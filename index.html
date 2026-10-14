@@ -6,532 +6,667 @@
   <title>SMB Sales · FY27 Q1 Readout · Intuit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Intuit brand palette */
-      --ib:    #066FEF;   /* Intuit Blue */
-      --ibd:   #0455C2;   /* Intuit Blue Dark */
-      --ibdd:  #032D85;   /* Intuit Blue Deeper */
-      --navy:  #0D1F3C;
-      --night: #060E1E;
-      --teal:  #00A6A4;
-      --green: #1DB87A;
-      --gd:    #0D6B3A;
-      --amber: #F59E0B;
-      --red:   #DC2626;
-      --redd:  #991B1B;
-      --bg:    #F4F6FA;
-      --white: #FFFFFF;
-      --rule:  #E2E8F0;
-      --rulel: #F1F4F9;
-      --ink:   #0A0F1C;
-      --ink2:  #1A2332;
-      --ink3:  #3D4B66;
-      --ink4:  #6B7A96;
-      --ink5:  #A0ABBE;
+      --blue:    #066FEF;
+      --blue-d:  #0455C2;
+      --blue-dd: #032775;
+      --navy:    #0A1628;
+      --night:   #050B17;
+      --teal:    #00A6A4;
+      --green:   #18A85A;
+      --green-d: #0D6B3A;
+      --red:     #E02020;
+      --amber:   #D97706;
+      --white:   #FFFFFF;
+      --off:     #F8F9FC;
+      --border:  #E4E8F0;
+      --border-l:#F0F2F7;
+      --text:    #0A0F1C;
+      --text-2:  #2A3548;
+      --text-3:  #4B5A72;
+      --text-4:  #7A8BA6;
+      --text-5:  #A8B6CB;
     }
 
-    html { font-size: 14px; }
+    html { font-size: 16px; scroll-behavior: smooth; }
 
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background: var(--off);
+      color: var(--text);
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.5;
     }
 
-    /* ─────────── TOPNAV ─────────── */
-    .topnav {
-      background: var(--white);
-      border-bottom: 1px solid var(--rule);
-      padding: 0.65rem 2.5rem;
+    /* ─── NAV ─── */
+    .nav {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      height: 52px;
       display: flex;
       align-items: center;
-      gap: 0.9rem;
+      gap: 1rem;
       position: sticky;
       top: 0;
-      z-index: 99;
+      z-index: 100;
     }
-    .tn-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
+    .nav-logo {
+      font-size: 1.05rem;
+      font-weight: 800;
+      font-style: italic;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .tn-logo-mark {
-      width: 24px; height: 24px;
-      background: linear-gradient(135deg, var(--ib), var(--teal));
-      border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .tn-logo-mark svg { width: 14px; height: 14px; }
-    .tn-brand { font-size: 0.82rem; font-weight: 800; color: var(--ib); letter-spacing: -0.01em; }
-    .tn-sep { color: var(--rule); font-size: 1.1rem; line-height: 1; }
-    .tn-path { font-size: 0.7rem; color: var(--ink4); }
-    .tn-badge {
+    .nav-sep { color: var(--border); }
+    .nav-crumb { font-size: 0.78rem; color: var(--text-4); }
+    .nav-pill {
       margin-left: auto;
-      font-size: 0.6rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      background: #FEF3C7; color: #92400E;
-      padding: 0.2rem 0.65rem; border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #FEF3C7;
+      color: #92400E;
+      padding: 0.22rem 0.7rem;
+      border-radius: 99px;
     }
 
-    /* ─────────── MASTHEAD ─────────── */
-    .masthead {
+    /* ─── HERO ─── */
+    .hero {
       background:
-        radial-gradient(ellipse 80% 60% at 70% 110%, rgba(6,111,239,0.28) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 80% at 0% 50%, rgba(0,166,164,0.15) 0%, transparent 60%),
-        linear-gradient(160deg, var(--night) 0%, #0B1830 35%, #0D2550 65%, #0C3080 100%);
+        radial-gradient(ellipse 90% 70% at 75% 120%, rgba(6,111,239,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 80% at -5% 40%,  rgba(0,166,164,0.2)  0%, transparent 55%),
+        radial-gradient(ellipse 40% 50% at 50% 0%,   rgba(3,39,117,0.5)   0%, transparent 60%),
+        linear-gradient(160deg, #050B17 0%, #080F20 30%, #0C1A38 60%, #0A2260 100%);
+      padding: 0 2.5rem;
       position: relative;
       overflow: hidden;
     }
-    .masthead::after {
+    .hero::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
-      background-size: 28px 28px;
-      pointer-events: none;
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 1.5px 1.5px, rgba(255,255,255,0.025) 1px, transparent 0);
+      background-size: 32px 32px;
     }
-    .mast-inner {
-      max-width: 980px;
+    .hero-inner {
+      max-width: 1040px;
       margin: 0 auto;
-      padding: 3rem 2.5rem 0;
+      padding: 4.5rem 0 0;
       position: relative;
       z-index: 1;
     }
-    .mast-rule {
-      border: none;
-      height: 3px;
-      background: linear-gradient(90deg, var(--ib) 0%, var(--teal) 100%);
-      margin-bottom: 1.75rem;
-      border-radius: 2px;
-    }
-    .mast-eyeline {
-      display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 0.6rem;
-    }
-    .mast-org {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em;
+    .hero-kicker {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      background: linear-gradient(90deg, var(--teal), #7BCFCE);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background: linear-gradient(90deg, var(--teal), #67E8F9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.25rem;
     }
-    .mast-date { font-size: 0.62rem; color: rgba(255,255,255,0.35); }
-    .mast-hed {
-      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    .hero-hed {
+      font-size: clamp(3.5rem, 7vw, 6rem);
       font-weight: 800;
       color: #fff;
-      line-height: 1.05;
-      letter-spacing: -0.025em;
-      margin-bottom: 0.75rem;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
     }
-    .mast-hed em {
-      font-style: italic; font-weight: 300;
-      background: linear-gradient(90deg, #7BCFCE, #93C5FD);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    .hero-hed .light {
+      display: block;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: -0.03em;
     }
-    .mast-deck {
-      font-size: 0.9rem; font-weight: 300;
-      color: rgba(255,255,255,0.5);
-      max-width: 520px; line-height: 1.6;
-      margin-bottom: 2.5rem;
+    .hero-sub {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 3.5rem;
+      line-height: 1.6;
     }
-    .mast-deck strong { color: rgba(255,255,255,0.75); font-weight: 600; }
+    .hero-sub strong { color: rgba(255,255,255,0.65); font-weight: 600; }
 
-    /* stat strip */
-    .strip {
+    /* big stat grid */
+    .hero-stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      background: rgba(0,0,0,0.15);
-      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255,255,255,0.07);
     }
-    .strip-cell {
-      padding: 1.5rem 1.6rem;
+    .hs-cell {
+      padding: 2rem 1.75rem 2.25rem;
       border-right: 1px solid rgba(255,255,255,0.07);
       position: relative;
-      transition: background 0.2s;
     }
-    .strip-cell:last-child { border-right: none; }
-    .strip-cell::before {
+    .hs-cell:last-child { border-right: none; }
+    .hs-cell::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--cc);
-      opacity: 0.9;
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: var(--bar);
     }
-    .strip-cell.g { --cc: linear-gradient(90deg, #22C55E, #4ADE80); }
-    .strip-cell.b { --cc: linear-gradient(90deg, var(--ib), #60A5FA); }
-    .strip-cell.t { --cc: linear-gradient(90deg, var(--teal), #5EEAD4); }
-    .snum {
-      font-size: 2.6rem;
+    .hs-cell.g  { --bar: linear-gradient(90deg,#22C55E,#4ADE80); }
+    .hs-cell.b  { --bar: linear-gradient(90deg,var(--blue),#93C5FD); }
+    .hs-cell.t  { --bar: linear-gradient(90deg,var(--teal),#5EEAD4); }
+    .hs-num {
+      font-size: 4rem;
       font-weight: 800;
       color: #fff;
       line-height: 1;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
       font-variant-numeric: tabular-nums;
     }
-    .snum sup { font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.35); vertical-align: super; margin-left: 2px; }
-    .slbl { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.35rem; }
-    .ssub { font-size: 0.68rem; color: rgba(255,255,255,0.3); margin-top: 0.12rem; line-height: 1.45; }
+    .hs-itf {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+      margin-bottom: 0.1rem;
+    }
+    .hs-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.35rem;
+    }
+    .hs-desc {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.28);
+      margin-top: 0.15rem;
+      line-height: 1.45;
+    }
 
-    /* ─────────── BODY ─────────── */
-    .body { max-width: 980px; margin: 0 auto; padding: 0 2rem 6rem; }
+    /* ─── BODY CONTAINER ─── */
+    .body {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 2rem 7rem;
+    }
 
-    /* ─────────── SHEET (page) ─────────── */
-    .sheet {
+    /* ─── PULL QUOTE ─── */
+    .pull {
       background: var(--white);
-      border: 1px solid var(--rule);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-top: 2rem;
+      padding: 2.5rem 3rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .pull::before {
+      content: '"';
+      position: absolute;
+      top: 1rem; left: 2.25rem;
+      font-size: 8rem;
+      line-height: 1;
+      color: var(--border-l);
+      font-family: Georgia, serif;
+      font-weight: 700;
+      pointer-events: none;
+    }
+    .pull-q {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
+      letter-spacing: -0.015em;
+      max-width: 760px;
+      position: relative;
+    }
+    .pull-q em { font-style: normal; color: var(--blue); }
+    .pull-attach {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 2rem;
+      border: 1px solid var(--border);
       border-radius: 12px;
-      margin-top: 1.75rem;
       overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
     }
-    .sheet-topbar {
-      background: linear-gradient(90deg, var(--navy) 0%, #142040 100%);
-      padding: 0.55rem 1.6rem;
-      display: flex; align-items: center; gap: 0.7rem;
+    .pa-cell {
+      padding: 1.25rem 1.5rem;
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
     }
-    .stb-logo { font-size: 0.7rem; font-weight: 800; color: #fff; font-style: italic; letter-spacing: -0.01em; }
-    .stb-sep { color: rgba(255,255,255,0.2); }
-    .stb-path { font-size: 0.62rem; color: rgba(255,255,255,0.4); }
-    .sheet-hed { padding: 1.35rem 1.6rem 0.9rem; border-bottom: 1px solid var(--rule); }
-    .sheet-h2 {
-      font-size: 1.2rem; font-weight: 700;
-      color: var(--ink); line-height: 1.25; letter-spacing: -0.01em;
+    .pa-cell:last-child { border-right: none; }
+    .pa-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
     }
-    .sheet-sub { font-size: 0.7rem; color: var(--ink4); margin-top: 0.25rem; }
+    .pa-label {
+      font-size: 0.8rem;
+      color: var(--text-3);
+      line-height: 1.4;
+    }
+    .pa-label strong { color: var(--text-2); font-weight: 700; display: block; }
 
-    /* ─────────── SCORECARD TABLE ─────────── */
-    .sc { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    /* ─── CARD BASE ─── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin-top: 2rem;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.04);
+    }
+    .card-topbar {
+      background: linear-gradient(90deg, var(--navy) 0%, #102040 100%);
+      padding: 0.65rem 1.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .ctb-logo { font-size: 0.75rem; font-weight: 800; color: #fff; font-style: italic; letter-spacing: -0.01em; }
+    .ctb-sep  { color: rgba(255,255,255,0.18); }
+    .ctb-path { font-size: 0.67rem; color: rgba(255,255,255,0.38); }
+    .card-hed {
+      padding: 1.6rem 1.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .card-sub { font-size: 0.75rem; color: var(--text-4); margin-top: 0.3rem; }
+
+    /* ─── SCORECARD TABLE ─── */
+    .sc { width: 100%; border-collapse: collapse; }
     .sc thead th {
-      padding: 0.55rem 1rem;
+      padding: 0.6rem 1.1rem;
       text-align: left;
-      background: var(--bg);
-      font-size: 0.58rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--ink4);
-      border-bottom: 1px solid var(--rule);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-4);
+      background: var(--off);
+      border-bottom: 1px solid var(--border);
       white-space: nowrap;
     }
-    .sc thead th:last-child { text-align: center; width: 60px; }
+    .sc thead th:last-child { text-align: center; width: 70px; }
     .sc-grp td {
-      padding: 0.38rem 1rem;
-      font-size: 0.57rem; font-weight: 700;
-      letter-spacing: 0.13em; text-transform: uppercase;
-      color: var(--ink5); background: #FAFBFD;
-      border-top: 1px solid var(--rulel);
+      padding: 0.4rem 1.1rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-5);
+      background: #FAFBFD;
+      border-top: 1px solid var(--border-l);
     }
-    .sc tbody tr { border-bottom: 1px solid var(--rulel); transition: background 0.12s; }
-    .sc tbody tr:hover { background: #FAFBFD; }
-    .sc tbody tr:last-child { border-bottom: none; }
-    .sc td { padding: 0.6rem 1rem; vertical-align: middle; }
-    .sc-m { font-weight: 500; color: var(--ink2); }
-    .sc-p { color: var(--ink5); white-space: nowrap; font-size: 0.71rem; }
-    .sc-a { font-size: 0.72rem; color: var(--ink4); }
+    .sc tbody tr {
+      border-bottom: 1px solid var(--border-l);
+      transition: background 0.1s;
+    }
+    .sc tbody tr:hover { background: #FAFBFE; }
+    .sc td { padding: 0.7rem 1.1rem; vertical-align: middle; font-size: 0.85rem; }
+    .sc-m { font-weight: 500; color: var(--text-2); }
+    .sc-p { color: var(--text-5); white-space: nowrap; font-size: 0.78rem; }
+    .sc-a { font-size: 0.78rem; color: var(--text-3); }
     .sc-n {
-      text-align: center; font-weight: 800;
-      font-size: 0.85rem; font-variant-numeric: tabular-nums;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
       letter-spacing: -0.01em;
     }
-    .sc-n.g { color: var(--gd); }
-    .sc-n.a { color: #B45309; }
-    .sc-n.r { color: var(--redd); }
+    .sc-n.g { color: var(--green-d); }
+    .sc-n.a { color: var(--amber); }
+    .sc-n.r { color: var(--red); }
 
-    /* ─────────── CHART + SPOTLIGHT ─────────── */
+    /* ─── CHART + SPOTLIGHT ─── */
     .split {
       display: grid;
       grid-template-columns: 44% 56%;
-      border-top: 1px solid var(--rule);
+      border-top: 1px solid var(--border);
     }
-    .split-l { padding: 1.5rem 1.6rem; border-right: 1px solid var(--rule); }
-    .split-r { padding: 1.5rem 1.6rem; }
+    .split-l { padding: 1.75rem; border-right: 1px solid var(--border); }
+    .split-r { padding: 1.75rem; }
     .split-kicker {
-      font-size: 0.58rem; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--ib); margin-bottom: 0.75rem;
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--blue); margin-bottom: 1rem;
     }
-
-    /* spotlight */
     .sp-img {
       width: 100%; display: block;
-      border-radius: 8px;
-      border: 1px solid var(--rulel);
-      margin-bottom: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.25rem;
+      border: 1px solid var(--border-l);
     }
-    .sp-name { font-size: 1.1rem; font-weight: 800; color: var(--ink); line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 0.1rem; }
-    .sp-role { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ib); margin-bottom: 0.8rem; }
-    .sp-body { font-size: 0.79rem; color: var(--ink3); line-height: 1.7; margin-bottom: 1rem; }
-    .sp-stats { display: flex; gap: 1.5rem; padding-top: 0.85rem; border-top: 1px solid var(--rulel); flex-wrap: wrap; }
-    .sp-sn { font-size: 1.3rem; font-weight: 800; color: var(--gd); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
-    .sp-sl { font-size: 0.62rem; color: var(--ink4); line-height: 1.35; margin-top: 0.15rem; }
+    .sp-name { font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em; margin-bottom: 0.15rem; }
+    .sp-role { font-size: 0.63rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.9rem; }
+    .sp-body { font-size: 0.85rem; color: var(--text-3); line-height: 1.72; margin-bottom: 1.1rem; }
+    .sp-stats { display: flex; gap: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-l); }
+    .sp-sn { font-size: 1.5rem; font-weight: 800; color: var(--green-d); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+    .sp-sl { font-size: 0.67rem; color: var(--text-4); margin-top: 0.2rem; line-height: 1.35; }
 
     .sc-foot {
-      padding: 0.7rem 1.6rem;
-      font-size: 0.64rem; color: var(--ink5);
-      border-top: 1px solid var(--rule);
+      padding: 0.8rem 1.75rem;
+      font-size: 0.67rem;
+      color: var(--text-5);
+      border-top: 1px solid var(--border);
+      background: var(--off);
       line-height: 1.55;
-      background: var(--bg);
     }
 
-    /* ─────────── PLATFORM ACTIVATION ─────────── */
-    .act-sheet {
-      background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      margin-top: 1.75rem;
+    /* ─── ACTIVATION ─── */
+    .activation {
+      margin-top: 2rem;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.04);
     }
-    .act-topbar {
-      background: linear-gradient(90deg, var(--navy) 0%, #142040 100%);
-      padding: 0.55rem 1.6rem;
-      display: flex; align-items: center; gap: 0.7rem;
+    .act-photo {
+      width: 100%; display: block;
+      height: 380px;
+      object-fit: cover;
+      object-position: center 25%;
     }
-    .act-hed { padding: 1.35rem 1.6rem 0.9rem; border-bottom: 1px solid var(--rule); }
-    .act-h2 { font-size: 1.2rem; font-weight: 700; color: var(--ink); line-height: 1.25; letter-spacing: -0.01em; }
-    .act-sub { font-size: 0.7rem; color: var(--ink4); margin-top: 0.25rem; }
-    .act-photo { width: 100%; display: block; max-height: 320px; object-fit: cover; object-position: center 25%; border-bottom: 1px solid var(--rule); }
-    .act-caption { font-size: 0.64rem; color: var(--ink5); padding: 0.45rem 1.6rem; border-bottom: 1px solid var(--rule); font-style: italic; }
-    .act-stats {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      border-bottom: 1px solid var(--rule);
+    .act-overlay {
+      background: linear-gradient(90deg, var(--navy) 0%, #102040 100%);
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
     }
-    .act-stat { padding: 1.25rem 1.5rem; border-right: 1px solid var(--rule); text-align: center; }
-    .act-stat:last-child { border-right: none; }
-    .act-sn {
-      font-size: 1.9rem; font-weight: 800;
-      color: var(--ink); line-height: 1;
-      letter-spacing: -0.025em;
+    .act-title-block .act-eyebrow {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem;
     }
-    .act-sl { font-size: 0.65rem; color: var(--ink4); margin-top: 0.3rem; line-height: 1.4; }
-    .act-body { padding: 1.6rem; }
-    .act-p { font-size: 0.83rem; color: var(--ink3); line-height: 1.72; margin-bottom: 0.8rem; }
-    .act-p:last-child { margin-bottom: 0; }
-    .act-p strong { color: var(--ink2); font-weight: 600; }
-
-    /* ─────────── GENERIC SECTION ─────────── */
-    .sec {
+    .act-title-block .act-h2 {
+      font-size: 1.35rem; font-weight: 800;
+      color: #fff; line-height: 1.2; letter-spacing: -0.02em;
+      max-width: 380px;
+    }
+    .act-title-block .act-sub { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.3rem; }
+    .act-nums {
+      display: flex;
+      gap: 0;
+      flex-shrink: 0;
+    }
+    .an-cell {
+      padding: 0 2rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    .an-cell:last-child { border-right: none; padding-right: 0; }
+    .an-num {
+      font-size: 2rem; font-weight: 800;
+      color: #fff; line-height: 1;
+      letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+    }
+    .an-label { font-size: 0.65rem; color: rgba(255,255,255,0.38); margin-top: 0.3rem; line-height: 1.35; }
+    .act-body-section {
       background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      margin-top: 1.75rem;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      padding: 2rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      border-top: 1px solid var(--border);
     }
-    .sec-head {
-      padding: 1.1rem 1.6rem 0.9rem;
-      border-bottom: 1px solid var(--rule);
-      display: flex; align-items: baseline; gap: 1rem;
-      background: linear-gradient(90deg, #FAFBFF 0%, var(--white) 100%);
-    }
-    .sec-lbl {
-      font-size: 0.57rem; font-weight: 700; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--ib); white-space: nowrap;
-    }
-    .sec-ttl { font-size: 0.94rem; font-weight: 700; color: var(--ink); letter-spacing: -0.005em; }
-    .sec-body { padding: 1.5rem 1.6rem; }
+    .act-p { font-size: 0.88rem; color: var(--text-3); line-height: 1.75; }
+    .act-p strong { color: var(--text-2); font-weight: 600; }
+    .act-p + .act-p { margin-top: 0.75rem; }
 
-    /* ─────────── GOALS ─────────── */
-    .goals { display: grid; grid-template-columns: 1fr 1fr; }
-    .goal-col { padding: 1.5rem 1.6rem; }
-    .goal-col:first-child { border-right: 1px solid var(--rule); }
-    .goal-kicker { font-size: 0.57rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.35rem; }
-    .goal-col:first-child .goal-kicker { color: var(--ib); }
-    .goal-col:last-child  .goal-kicker { color: var(--gd); }
-    .goal-h { font-size: 1.05rem; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; margin-bottom: 1.1rem; }
-    .gr { display: grid; grid-template-columns: 1fr auto auto; gap: 0.85rem; align-items: baseline; padding: 0.5rem 0; border-bottom: 1px solid var(--rulel); font-size: 0.77rem; }
+    /* ─── STRATEGY ─── */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .gc {
+      padding: 2rem;
+    }
+    .gc:first-child { border-right: 1px solid var(--border); }
+    .gc-kicker { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .gc:first-child .gc-kicker { color: var(--blue); }
+    .gc:last-child  .gc-kicker { color: var(--green-d); }
+    .gc-h { font-size: 1.15rem; font-weight: 800; color: var(--text); letter-spacing: -0.015em; margin-bottom: 1.25rem; }
+    .gr { display: grid; grid-template-columns: 1fr auto auto; gap: 1rem; align-items: baseline; padding: 0.6rem 0; border-bottom: 1px solid var(--border-l); font-size: 0.85rem; }
     .gr:last-of-type { border-bottom: none; }
-    .gr-m { color: var(--ink3); }
-    .gr-r { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
-    .gr-d { font-size: 0.64rem; font-weight: 800; min-width: 38px; text-align: right; }
-    .goal-col:first-child .gr-d { color: var(--ib); }
-    .goal-col:last-child  .gr-d { color: var(--gd); }
-    .goal-note { font-size: 0.7rem; color: var(--ink4); margin-top: 1rem; padding-top: 0.7rem; border-top: 1px solid var(--rulel); font-style: italic; line-height: 1.5; }
+    .gr-m { color: var(--text-3); }
+    .gr-r { font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .gr-d { font-size: 0.7rem; font-weight: 800; min-width: 42px; text-align: right; }
+    .gc:first-child .gr-d { color: var(--blue); }
+    .gc:last-child  .gr-d { color: var(--green-d); }
+    .gc-note { font-size: 0.75rem; color: var(--text-4); margin-top: 1.1rem; padding-top: 0.85rem; border-top: 1px solid var(--border-l); font-style: italic; line-height: 1.55; }
 
-    /* ─────────── GAPS ─────────── */
+    /* ─── GAPS ─── */
     .gaps { display: grid; grid-template-columns: repeat(3, 1fr); }
-    .gap-col { padding: 1.4rem 1.5rem; border-right: 1px solid var(--rule); }
+    .gap-col { padding: 2rem; border-right: 1px solid var(--border); }
     .gap-col:last-child { border-right: none; }
     .gap-n {
-      font-size: 2.2rem; font-weight: 800; color: var(--red);
-      line-height: 1; letter-spacing: -0.025em;
-      font-variant-numeric: tabular-nums; margin-bottom: 0.2rem;
+      font-size: 3rem; font-weight: 800; color: var(--red);
+      line-height: 1; letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums; margin-bottom: 0.25rem;
     }
-    .gap-lbl { font-size: 0.72rem; font-weight: 700; color: var(--ink2); padding-bottom: 0.65rem; margin-bottom: 0.65rem; border-bottom: 1px solid var(--rulel); }
-    .gap-body { font-size: 0.77rem; color: var(--ink3); line-height: 1.67; }
+    .gap-lbl { font-size: 0.82rem; font-weight: 700; color: var(--text-2); padding-bottom: 0.75rem; margin-bottom: 0.85rem; border-bottom: 1px solid var(--border-l); }
+    .gap-body { font-size: 0.82rem; color: var(--text-3); line-height: 1.7; }
 
-    /* ─────────── LEADERS ─────────── */
+    /* ─── LEADERS ─── */
     .leaders { display: grid; grid-template-columns: repeat(3, 1fr); }
-    .ldr { padding: 1.35rem 1.5rem; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .ldr { padding: 1.75rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .ldr:nth-child(3n) { border-right: none; }
     .ldr:nth-child(n+4) { border-bottom: none; }
     .ldr-av {
-      width: 40px; height: 40px;
+      width: 52px; height: 52px;
       border-radius: 50%;
       object-fit: cover; object-position: center top;
-      display: block; margin-bottom: 0.75rem;
-      border: 2px solid var(--rulel);
+      display: block; margin-bottom: 0.9rem;
+      border: 2px solid var(--border-l);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .ldr-av-init {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--ib), var(--teal));
-      color: #fff; font-size: 0.6rem; font-weight: 800;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 0.75rem; letter-spacing: 0.04em;
-    }
-    .ldr-name { font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 0.1rem; letter-spacing: -0.005em; }
-    .ldr-role { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ib); margin-bottom: 0.5rem; }
-    .ldr-desc { font-size: 0.75rem; color: var(--ink3); line-height: 1.56; }
+    .ldr-name { font-size: 1rem; font-weight: 800; color: var(--text); letter-spacing: -0.01em; margin-bottom: 0.15rem; }
+    .ldr-role { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.6rem; }
+    .ldr-desc { font-size: 0.82rem; color: var(--text-3); line-height: 1.6; }
 
-    /* ─────────── COMMITMENTS ─────────── */
-    .ct { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-    .ct th { text-align: left; padding: 0.5rem 0.9rem; font-size: 0.57rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink4); border-bottom: 2px solid var(--ink); }
-    .ct td { padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--rulel); vertical-align: top; color: var(--ink3); }
+    /* ─── COMMITMENTS ─── */
+    .ct { width: 100%; border-collapse: collapse; }
+    .ct th { text-align: left; padding: 0.6rem 1.1rem; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--text-4); border-bottom: 2px solid var(--text); }
+    .ct td { padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--border-l); vertical-align: top; color: var(--text-3); font-size: 0.85rem; }
     .ct tr:last-child td { border-bottom: none; }
-    .ct-own { font-weight: 700; color: var(--ink2); white-space: nowrap; }
-    .ct-due { font-size: 0.64rem; font-weight: 700; color: var(--ib); white-space: nowrap; }
+    .ct-own { font-weight: 700; color: var(--text-2); white-space: nowrap; }
+    .ct-due { font-size: 0.7rem; font-weight: 700; color: var(--blue); white-space: nowrap; }
 
-    .bs { background: var(--bg); border: 1px solid var(--rule); border-radius: 8px; padding: 1.1rem 1.4rem; margin-top: 1.25rem; }
-    .bs-h { font-size: 0.57rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink4); margin-bottom: 0.6rem; }
+    .bs {
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .bs-h { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-4); margin-bottom: 0.7rem; }
     .bs ul { list-style: none; }
-    .bs li { font-size: 0.79rem; color: var(--ink3); padding: 0.4rem 0 0.4rem 1rem; border-bottom: 1px solid var(--rulel); position: relative; line-height: 1.58; }
+    .bs li { font-size: 0.85rem; color: var(--text-3); padding: 0.45rem 0 0.45rem 1.1rem; border-bottom: 1px solid var(--border-l); position: relative; line-height: 1.6; }
     .bs li:last-child { border-bottom: none; }
-    .bs li::before { content: '–'; position: absolute; left: 0; color: var(--ink5); }
+    .bs li::before { content: '–'; position: absolute; left: 0; color: var(--text-5); }
 
     .dec { margin-top: 1.5rem; }
-    .dec-h {
-      font-size: 0.57rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-      color: #B45309; margin-bottom: 0.7rem; padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .dec-row { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 1.25rem; padding: 0.9rem 0; border-bottom: 1px solid var(--rulel); align-items: start; }
+    .dec-h { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem; padding-bottom: 0.55rem; border-bottom: 1px solid var(--border); }
+    .dec-row { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--border-l); align-items: start; }
     .dec-row:last-child { border-bottom: none; }
-    .dec-q { font-size: 0.8rem; font-weight: 700; color: var(--ink2); line-height: 1.42; }
-    .dec-hh { font-size: 0.77rem; color: var(--ink3); line-height: 1.58; }
-    .dec-m { font-size: 0.71rem; color: var(--ink3); }
-    .dec-m strong { color: var(--ink2); font-weight: 700; display: block; margin-bottom: 0.2rem; }
-    .dec-date { font-size: 0.62rem; font-weight: 800; color: #B45309; display: block; margin-top: 0.3rem; letter-spacing: 0.02em; }
+    .dec-q { font-size: 0.88rem; font-weight: 700; color: var(--text-2); line-height: 1.42; }
+    .dec-hh { font-size: 0.83rem; color: var(--text-3); line-height: 1.6; }
+    .dec-m { font-size: 0.75rem; color: var(--text-3); }
+    .dec-m strong { color: var(--text-2); font-weight: 700; display: block; margin-bottom: 0.25rem; }
+    .dec-date { font-size: 0.67rem; font-weight: 800; color: var(--amber); display: block; margin-top: 0.35rem; }
 
-    /* ─────────── VALUES ─────────── */
+    /* ─── VALUES ─── */
     .vals { display: grid; grid-template-columns: repeat(5, 1fr); }
-    .val { padding: 1.2rem 1.1rem; border-right: 1px solid var(--rule); }
+    .val { padding: 1.6rem 1.4rem; border-right: 1px solid var(--border); }
     .val:last-child { border-right: none; }
-    .val-n { font-size: 0.76rem; font-weight: 800; color: var(--ink); margin-bottom: 0.4rem; letter-spacing: -0.005em; }
-    .val-d { font-size: 0.7rem; color: var(--ink4); line-height: 1.52; }
+    .val-n { font-size: 0.85rem; font-weight: 800; color: var(--text); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+    .val-d { font-size: 0.77rem; color: var(--text-4); line-height: 1.55; }
 
-    .closing {
-      font-size: 1.05rem; font-style: italic; font-weight: 300;
-      color: var(--ink); text-align: center;
-      padding: 1.85rem 1.6rem;
-      border-top: 1px solid var(--rule);
-      background: linear-gradient(180deg, var(--white) 0%, #FAFBFF 100%);
+    /* ─── CLOSING DARK SECTION ─── */
+    .closing-dark {
+      background: linear-gradient(135deg, var(--navy) 0%, #0C2050 100%);
+      border-radius: 0 0 16px 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .closing cite {
-      display: block; font-style: normal;
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--ink4); margin-top: 0.6rem;
+    .closing-dark::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 1.5px 1.5px, rgba(255,255,255,0.025) 1px, transparent 0);
+      background-size: 28px 28px;
+    }
+    .closing-q {
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      max-width: 560px;
+      margin: 0 auto 0.9rem;
+      position: relative;
+    }
+    .closing-cite {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      position: relative;
     }
 
-    /* ─────────── FOOTER ─────────── */
+    /* ─── SECTION CHROME ─── */
+    .sec { background: var(--white); border: 1px solid var(--border); border-radius: 16px; margin-top: 2rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 8px 32px rgba(0,0,0,0.04); }
+    .sec-head { padding: 1.5rem 1.75rem 1.1rem; border-bottom: 1px solid var(--border); }
+    .sec-lbl { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.25rem; }
+    .sec-ttl { font-size: 1.15rem; font-weight: 800; color: var(--text); letter-spacing: -0.015em; }
+    .sec-body { padding: 1.75rem; }
+
+    /* ─── FOOTER ─── */
     .footer {
-      margin-top: 2.5rem; padding: 1.2rem 0;
-      border-top: 2px solid var(--ink);
-      display: flex; justify-content: space-between; align-items: baseline;
-      font-size: 0.63rem; color: var(--ink5);
-      flex-wrap: wrap; gap: 0.4rem;
+      margin-top: 3rem; padding: 1.25rem 0;
+      border-top: 2px solid var(--text);
+      display: flex; justify-content: space-between;
+      font-size: 0.7rem; color: var(--text-4);
+      flex-wrap: wrap; gap: 0.5rem;
     }
-    .footer strong { color: var(--ink); font-weight: 700; }
+    .footer strong { color: var(--text); font-weight: 700; }
 
-    /* ─────────── RESPONSIVE ─────────── */
-    @media (max-width: 700px) {
-      .strip, .act-stats { grid-template-columns: repeat(2, 1fr); }
-      .split, .goals, .gaps, .leaders, .vals { grid-template-columns: 1fr; }
-      .split-l { border-right: none; border-bottom: 1px solid var(--rule); }
-      .goal-col:first-child { border-right: none; border-bottom: 1px solid var(--rule); }
-      .gap-col, .val { border-right: none; border-bottom: 1px solid var(--rule); }
-      .gap-col:last-child, .val:last-child { border-bottom: none; }
-      .ldr:nth-child(3n) { border-right: 1px solid var(--rule); }
-      .ldr:nth-child(2n) { border-right: none; }
-      .dec-row { grid-template-columns: 1fr; gap: 0.4rem; }
+    @media (max-width: 720px) {
+      .hero-stats, .goals-grid, .gaps, .leaders, .vals { grid-template-columns: 1fr 1fr; }
+      .split, .act-body-section { grid-template-columns: 1fr; }
+      .act-overlay { flex-direction: column; }
+      .act-nums { flex-wrap: wrap; justify-content: center; }
+      .dec-row { grid-template-columns: 1fr; }
+      .pa-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .pull-attach { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══ TOPNAV ═══ -->
-<nav class="topnav">
-  <div class="tn-logo">
-    <div class="tn-logo-mark">
-      <svg viewBox="0 0 14 14" fill="none"><path d="M7 1L2 7l5 6 5-6-5-6z" fill="white" opacity="0.9"/></svg>
-    </div>
-    <span class="tn-brand">intuit</span>
-  </div>
-  <span class="tn-sep">|</span>
-  <span class="tn-path">SMB Sales &nbsp;·&nbsp; Growth and Transformation &nbsp;·&nbsp; FY27 Q1 Readout</span>
-  <span class="tn-badge">Internal use only</span>
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-logo">intuit</span>
+  <span class="nav-sep">|</span>
+  <span class="nav-crumb">SMB Sales &nbsp;·&nbsp; Growth and Transformation &nbsp;·&nbsp; FY27 Q1 Readout</span>
+  <span class="nav-pill">Internal use only</span>
 </nav>
 
-<!-- ═══ MASTHEAD ═══ -->
-<div class="masthead">
-  <div class="mast-inner">
-    <div class="mast-rule"></div>
-    <div class="mast-eyeline">
-      <span class="mast-org">SMB Sales · Growth and Transformation</span>
-      <span class="mast-date">October 14, 2026 &nbsp;·&nbsp; W11 &nbsp;·&nbsp; 3 weeks remaining</span>
-    </div>
-    <h1 class="mast-hed">FY27 Q1<br><em>Readout</em></h1>
-    <p class="mast-deck">Prepared for <strong>Travis Walter's</strong> leadership team &nbsp;·&nbsp; Owner: <strong>Chris Walker</strong></p>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker">Intuit &nbsp;·&nbsp; SMB Sales &nbsp;·&nbsp; October 14, 2026 &nbsp;·&nbsp; W11 &nbsp;·&nbsp; 3 weeks remaining</div>
+    <h1 class="hero-hed">
+      FY27
+      <span class="light">Q1 Readout</span>
+    </h1>
+    <p class="hero-sub">Prepared for <strong>Travis Walter's</strong> leadership team &nbsp;·&nbsp; Owner: <strong>Chris Walker</strong>, Growth and Transformation</p>
 
-    <div class="strip">
-      <div class="strip-cell g">
-        <div class="snum">125<sup>ITF</sup></div>
-        <div class="slbl">Sales $</div>
-        <div class="ssub">$131.5M vs $105.0M plan · incl. S2S</div>
+    <div class="hero-stats">
+      <div class="hs-cell g">
+        <div class="hs-num">125</div>
+        <div class="hs-itf">ITF</div>
+        <div class="hs-label">Sales $</div>
+        <div class="hs-desc">$131.5M vs $105.0M plan<br>incl. S2S</div>
       </div>
-      <div class="strip-cell g">
-        <div class="snum">145<sup>ITF</sup></div>
-        <div class="slbl">Advanced Units</div>
-        <div class="ssub">14,725 units QTD · 19,137 projected</div>
+      <div class="hs-cell g">
+        <div class="hs-num">145</div>
+        <div class="hs-itf">ITF</div>
+        <div class="hs-label">Advanced Units</div>
+        <div class="hs-desc">14,725 units QTD<br>19,137 projected</div>
       </div>
-      <div class="strip-cell b">
-        <div class="snum">115<sup>ITF</sup></div>
-        <div class="slbl">EMM Sales $</div>
-        <div class="ssub">$17.7M QTD · best week W11 $1.93M</div>
+      <div class="hs-cell b">
+        <div class="hs-num">115</div>
+        <div class="hs-itf">ITF</div>
+        <div class="hs-label">EMM Sales $</div>
+        <div class="hs-desc">$17.7M QTD<br>$1.93M best week W11</div>
       </div>
-      <div class="strip-cell t">
-        <div class="snum">175<sup>ITF</sup></div>
-        <div class="slbl">Expert Assist</div>
-        <div class="ssub">1,615 GNS vs 922 forecast</div>
+      <div class="hs-cell t">
+        <div class="hs-num">175</div>
+        <div class="hs-itf">ITF</div>
+        <div class="hs-label">Expert Assist</div>
+        <div class="hs-desc">1,615 GNS vs 922 forecast<br>DIWM 176 · Assisted 165</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══ BODY ═══ -->
+<!-- BODY -->
 <div class="body">
 
-<!-- ── PAGE 1: SCORECARD ── -->
-<div class="sheet">
-  <div class="sheet-topbar">
-    <span class="stb-logo">intuit</span>
-    <span class="stb-sep">|</span>
-    <span class="stb-path">SMB Sales &nbsp;|&nbsp; Growth and Transformation</span>
+<!-- PULL QUOTE -->
+<div class="pull">
+  <p class="pull-q">Advanced is carrying a 121 ITF quarter and attach proves it <em>compounds.</em> Three things stand between us and the $500M opportunity: payroll, Advanced pace, and Payments conversion.</p>
+  <div class="pull-attach">
+    <div class="pa-cell">
+      <div class="pa-num">156</div>
+      <div class="pa-label"><strong>Advanced-attached Workforce</strong>ITF to target, QTD</div>
+    </div>
+    <div class="pa-cell">
+      <div class="pa-num">139</div>
+      <div class="pa-label"><strong>Advanced-attached Payments</strong>ITF to target, QTD</div>
+    </div>
+    <div class="pa-cell">
+      <div class="pa-num">169</div>
+      <div class="pa-label"><strong>Advanced-attached Bill Pay</strong>ITF to target, QTD</div>
+    </div>
   </div>
-  <div class="sheet-hed">
-    <div class="sheet-h2">Q1 FY27 is tracking 121 ITF on Sales $, led by Advanced at 149 and EMM at 115</div>
-    <div class="sheet-sub">Scorecard through W11 &nbsp;·&nbsp; ITF = actual to forecast, 100 = plan</div>
-  </div>
+</div>
 
+<!-- SCORECARD SHEET -->
+<div class="card">
+  <div class="card-topbar">
+    <span class="ctb-logo">intuit</span>
+    <span class="ctb-sep">|</span>
+    <span class="ctb-path">SMB Sales &nbsp;|&nbsp; Growth and Transformation</span>
+  </div>
+  <div class="card-hed">
+    <div class="card-h2">Q1 FY27 is tracking 121 ITF on Sales $, led by Advanced at 149 and EMM at 115</div>
+    <div class="card-sub">Scorecard through W11 &nbsp;·&nbsp; ITF = actual to forecast, 100 = plan</div>
+  </div>
   <div style="overflow-x:auto;">
     <table class="sc">
-      <thead>
-        <tr><th style="width:36%">Metric</th><th>Period</th><th>QTD actual vs plan</th><th>ITF</th></tr>
-      </thead>
+      <thead><tr><th style="width:36%">Metric</th><th>Period</th><th>QTD actual vs plan</th><th>ITF</th></tr></thead>
       <tbody>
         <tr class="sc-grp"><td colspan="4">Sales &amp; Advanced</td></tr>
         <tr><td class="sc-m">Sales $, excl. S2S</td><td class="sc-p">W11</td><td class="sc-a">+$15.5M over plan · $114.9M projected at close</td><td class="sc-n g">121</td></tr>
@@ -554,56 +689,46 @@
     </table>
   </div>
 
-  <!-- CHART LEFT · SPOTLIGHT RIGHT -->
   <div class="split">
     <div class="split-l">
       <div class="split-kicker">QTD ITF by week</div>
-      <svg viewBox="0 0 380 170" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
+      <svg viewBox="0 0 400 180" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
         <defs>
-          <linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0D6B3A" stop-opacity="0.18"/><stop offset="100%" stop-color="#0D6B3A" stop-opacity="0"/></linearGradient>
-          <linearGradient id="gS" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#066FEF" stop-opacity="0.14"/><stop offset="100%" stop-color="#066FEF" stop-opacity="0"/></linearGradient>
+          <linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#18A85A" stop-opacity="0.2"/><stop offset="100%" stop-color="#18A85A" stop-opacity="0"/></linearGradient>
+          <linearGradient id="gS" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#066FEF" stop-opacity="0.15"/><stop offset="100%" stop-color="#066FEF" stop-opacity="0"/></linearGradient>
         </defs>
-        <!-- grid lines -->
-        <line x1="0" y1="125" x2="380" y2="125" stroke="#EAECF2" stroke-width="1"/>
-        <line x1="0" y1="100" x2="380" y2="100" stroke="#EAECF2" stroke-width="1"/>
-        <line x1="0" y1="75"  x2="380" y2="75"  stroke="#EAECF2" stroke-width="1"/>
-        <line x1="0" y1="50"  x2="380" y2="50"  stroke="#EAECF2" stroke-width="1"/>
-        <line x1="0" y1="25"  x2="380" y2="25"  stroke="#EAECF2" stroke-width="1"/>
-        <!-- 100 baseline -->
-        <line x1="0" y1="110" x2="380" y2="110" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="5 4"/>
-        <text x="375" y="108" font-size="8" fill="#A0ABBE" font-family="Plus Jakarta Sans,sans-serif" text-anchor="end">100</text>
-        <!-- Advanced fill -->
-        <polygon fill="url(#gA)" points="18,88 52,80 86,74 120,67 154,61 188,55 222,51 256,46 290,42 324,38 358,33 358,150 18,150"/>
-        <!-- Sales fill -->
-        <polygon fill="url(#gS)" points="18,103 52,98 86,93 120,89 154,85 188,81 222,79 256,76 290,73 324,71 358,68 358,150 18,150"/>
-        <!-- Sales line -->
+        <line x1="0" y1="140" x2="400" y2="140" stroke="#F0F2F7" stroke-width="1"/>
+        <line x1="0" y1="112" x2="400" y2="112" stroke="#F0F2F7" stroke-width="1"/>
+        <line x1="0" y1="84"  x2="400" y2="84"  stroke="#F0F2F7" stroke-width="1"/>
+        <line x1="0" y1="56"  x2="400" y2="56"  stroke="#F0F2F7" stroke-width="1"/>
+        <line x1="0" y1="28"  x2="400" y2="28"  stroke="#F0F2F7" stroke-width="1"/>
+        <line x1="0" y1="118" x2="400" y2="118" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="6 4"/>
+        <text x="395" y="115" font-size="9" fill="#A8B6CB" font-family="Plus Jakarta Sans,sans-serif" text-anchor="end">100</text>
+        <polygon fill="url(#gA)" points="20,90 56,82 92,75 128,68 164,62 200,55 236,50 272,45 308,40 344,36 380,31 380,158 20,158"/>
+        <polygon fill="url(#gS)" points="20,108 56,103 92,98 128,93 164,89 200,84 236,81 272,78 308,75 344,72 380,69 380,158 20,158"/>
         <polyline fill="none" stroke="#066FEF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-          points="18,103 52,98 86,93 120,89 154,85 188,81 222,79 256,76 290,73 324,71 358,68"/>
-        <!-- Advanced line -->
-        <polyline fill="none" stroke="#0D6B3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-          points="18,88 52,80 86,74 120,67 154,61 188,55 222,51 256,46 290,42 324,38 358,33"/>
-        <!-- end dots -->
-        <circle cx="358" cy="33" r="3.5" fill="#0D6B3A"/>
-        <circle cx="358" cy="68" r="3.5" fill="#066FEF"/>
-        <!-- week labels -->
-        <text x="18"  y="148" text-anchor="middle" font-size="7.5" fill="#A0ABBE" font-family="Plus Jakarta Sans,sans-serif">W1</text>
-        <text x="86"  y="148" text-anchor="middle" font-size="7.5" fill="#A0ABBE" font-family="Plus Jakarta Sans,sans-serif">W3</text>
-        <text x="154" y="148" text-anchor="middle" font-size="7.5" fill="#A0ABBE" font-family="Plus Jakarta Sans,sans-serif">W5</text>
-        <text x="222" y="148" text-anchor="middle" font-size="7.5" fill="#A0ABBE" font-family="Plus Jakarta Sans,sans-serif">W7</text>
-        <text x="290" y="148" text-anchor="middle" font-size="7.5" fill="#A0ABBE" font-family="Plus Jakarta Sans,sans-serif">W9</text>
-        <text x="358" y="148" text-anchor="middle" font-size="7.5" fill="#0A0F1C" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">W11</text>
-        <!-- end labels -->
-        <text x="354" y="27" font-size="8" fill="#0D6B3A" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" text-anchor="end">Advanced 149</text>
-        <text x="354" y="62" font-size="8" fill="#066FEF" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" text-anchor="end">Sales $ 121</text>
+          points="20,108 56,103 92,98 128,93 164,89 200,84 236,81 272,78 308,75 344,72 380,69"/>
+        <polyline fill="none" stroke="#18A85A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+          points="20,90 56,82 92,75 128,68 164,62 200,55 236,50 272,45 308,40 344,36 380,31"/>
+        <circle cx="380" cy="31" r="4" fill="#18A85A" stroke="white" stroke-width="2"/>
+        <circle cx="380" cy="69" r="4" fill="#066FEF" stroke="white" stroke-width="2"/>
+        <text x="374" y="24" font-size="9" fill="#18A85A" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" text-anchor="end">Adv 149</text>
+        <text x="374" y="63" font-size="9" fill="#066FEF" font-family="Plus Jakarta Sans,sans-serif" font-weight="700" text-anchor="end">Sales 121</text>
+        <text x="20"  y="170" text-anchor="middle" font-size="9" fill="#A8B6CB" font-family="Plus Jakarta Sans,sans-serif">W1</text>
+        <text x="92"  y="170" text-anchor="middle" font-size="9" fill="#A8B6CB" font-family="Plus Jakarta Sans,sans-serif">W3</text>
+        <text x="164" y="170" text-anchor="middle" font-size="9" fill="#A8B6CB" font-family="Plus Jakarta Sans,sans-serif">W5</text>
+        <text x="236" y="170" text-anchor="middle" font-size="9" fill="#A8B6CB" font-family="Plus Jakarta Sans,sans-serif">W7</text>
+        <text x="308" y="170" text-anchor="middle" font-size="9" fill="#A8B6CB" font-family="Plus Jakarta Sans,sans-serif">W9</text>
+        <text x="380" y="170" text-anchor="middle" font-size="9" fill="#0A0F1C" font-family="Plus Jakarta Sans,sans-serif" font-weight="700">W11</text>
       </svg>
-      <p style="font-size:0.65rem;color:var(--ink5);margin-top:0.65rem;line-height:1.5;">Advanced pace has eased but still runs 49 points above plan. Last four weeks average 1,295 Advanced units per week against a 1,581 aspiration.</p>
+      <p style="font-size:0.73rem;color:var(--text-4);margin-top:0.75rem;line-height:1.55;">Advanced pace has eased but still runs 49 points above plan. Last four weeks average 1,295 units per week against a 1,581 aspiration.</p>
     </div>
     <div class="split-r">
       <div class="split-kicker">Field spotlight: EMM and Maddie Crosby</div>
       <img src="maddie.png" alt="Madeline Crosby at the QuickBooks Advanced trade show, Charlotte" class="sp-img" />
       <div class="sp-name">Madeline Crosby</div>
       <div class="sp-role">EMM Inbound and Outbound</div>
-      <p class="sp-body">Madeline Crosby took EMM to its first QuickBooks Advanced trade show in Charlotte on Oct 13, with about 4,000 construction companies in the room. Our sellers spent the day with customers face to face. Maddie also built the EMM Advanced events calendar with Michelle Odell's team and is lining up demo-capable sellers for every show.</p>
+      <p class="sp-body">Madeline Crosby took EMM to its first QuickBooks Advanced trade show in Charlotte on Oct 13, with about 4,000 construction companies in the room. Maddie also built the EMM Advanced events calendar with Michelle Odell's team and is lining up demo-capable sellers for every show.</p>
       <div class="sp-stats">
         <div><div class="sp-sn">619%</div><div class="sp-sl">EMM Advanced ITF, QTD</div></div>
         <div><div class="sp-sn">+232%</div><div class="sp-sl">Advanced GNS vs last year</div></div>
@@ -611,82 +736,79 @@
       </div>
     </div>
   </div>
-
   <div class="sc-foot">
-    Scope is Inbound, Outbound, EMM and CDS; S2S excluded unless noted. W9 attach cut is latest published.
-    EMM Advanced is share of aspiration (61 IB · 57 OB · 81 AE), not ITF to forecast. &nbsp;·&nbsp;
-    Intuit | SMB and EMM | FY27 Q1 Scorecard | October 14, 2026 | Internal use only
+    Scope is Inbound, Outbound, EMM and CDS; S2S excluded unless noted. W9 attach cut is latest published. EMM Advanced is share of aspiration (61 IB · 57 OB · 81 AE), not ITF to forecast. Intuit | SMB and EMM | FY27 Q1 Scorecard | October 14, 2026 | Internal use only
   </div>
 </div>
 
-<!-- ── PAGE 2: PLATFORM ACTIVATION ── -->
-<div class="act-sheet">
-  <div class="act-topbar">
-    <span class="stb-logo">intuit</span>
-    <span class="stb-sep" style="color:rgba(255,255,255,0.2)">|</span>
-    <span class="stb-path">SMB Sales &nbsp;|&nbsp; Growth and Transformation</span>
-  </div>
-  <div class="act-hed">
-    <div class="act-h2">The people behind the numbers: Built for More in Mountain View</div>
-    <div class="act-sub">SMB and EMM Platform Activation onsite &nbsp;|&nbsp; Sept 29 to Oct 1</div>
-  </div>
+<!-- ACTIVATION -->
+<div class="activation">
   <img src="activation.png" alt="SMB and EMM sellers at Platform Activation, Mountain View" class="act-photo" />
-  <div class="act-caption">SMB and EMM sellers, leaders and partners at Platform Activation, Mountain View.</div>
-  <div class="act-stats">
-    <div class="act-stat"><div class="act-sn">1.5 days</div><div class="act-sl">of hands-on platform practice</div></div>
-    <div class="act-stat"><div class="act-sn">20 years</div><div class="act-sl">before one seller's first visit to HQ</div></div>
-    <div class="act-stat"><div class="act-sn">37</div><div class="act-sl">EMM AEs in the room</div></div>
-    <div class="act-stat"><div class="act-sn">144 ITF</div><div class="act-sl">EMM's best week of Q1, the week after</div></div>
+  <div class="act-overlay">
+    <div class="act-title-block">
+      <div class="act-eyebrow">People · Built for More</div>
+      <div class="act-h2">The people behind the numbers: Built for More in Mountain View</div>
+      <div class="act-sub">SMB and EMM Platform Activation onsite &nbsp;·&nbsp; Sept 29 to Oct 1</div>
+    </div>
+    <div class="act-nums">
+      <div class="an-cell"><div class="an-num">1.5 days</div><div class="an-label">hands-on platform<br>practice</div></div>
+      <div class="an-cell"><div class="an-num">37</div><div class="an-label">EMM AEs<br>in the room</div></div>
+      <div class="an-cell"><div class="an-num">144 ITF</div><div class="an-label">EMM the<br>week after</div></div>
+    </div>
   </div>
-  <div class="act-body">
-    <p class="act-p">In the last week of September we put sellers, leaders and partners in one room in Mountain View for SMB and EMM Platform Activation, our Built for More onsite. We skipped the slides. We spent a day and a half practicing: live objection handling, platform pitches, and a pitch-off with finalists on the last day.</p>
-    <p class="act-p">The people stories are the ones that stuck. One seller visited HQ for the first time in 20 years. Another met a colleague of more than ten years in person for the first time. Several took their first work trip ever.</p>
-    <p class="act-p">The numbers followed. The week after we got back, EMM posted its best week of Q1: $1.93M against a $1.34M forecast, 144 ITF, with Inbound, Outbound and AE all over aspiration together for the first time this quarter.</p>
-    <p class="act-p">Thank you to <strong>Whitney Sieck</strong>, who ran the event soup to nuts, and to Milka Akinloye-Grimm and Kim Amundson for the big and little things.</p>
+  <div class="act-body-section">
+    <div>
+      <p class="act-p">In the last week of September we put sellers, leaders and partners in one room in Mountain View. We skipped the slides. A day and a half of live objection handling, platform pitches, and a pitch-off with finalists on the last day.</p>
+      <p class="act-p">The people stories are the ones that stuck. One seller visited HQ for the first time in 20 years. Another met a colleague of 10+ years in person for the first time. Several took their first work trip ever.</p>
+    </div>
+    <div>
+      <p class="act-p">The numbers followed. The week after: EMM's best week of Q1 — $1.93M against a $1.34M forecast, 144 ITF, with Inbound, Outbound and AE all over aspiration together for the first time this quarter.</p>
+      <p class="act-p">Thank you to <strong>Whitney Sieck</strong>, who ran the event soup to nuts, and to Milka Akinloye-Grimm and Kim Amundson.</p>
+    </div>
   </div>
 </div>
 
-<!-- ── STRATEGY ── -->
+<!-- STRATEGY -->
 <div class="sec">
-  <div class="sec-head"><span class="sec-lbl">FY27 Strategy</span><span class="sec-ttl">Two motions, one team, one number</span></div>
+  <div class="sec-head"><div class="sec-lbl">FY27 Strategy</div><div class="sec-ttl">Two motions, one team, one number</div></div>
   <div class="sec-body" style="padding:0;">
-    <div class="goals">
-      <div class="goal-col">
-        <div class="goal-kicker">SMB · Core and high velocity</div>
-        <div class="goal-h">Scaled and efficient</div>
+    <div class="goals-grid">
+      <div class="gc">
+        <div class="gc-kicker">SMB · Core and high velocity</div>
+        <div class="gc-h">Scaled and efficient</div>
         <div class="gr"><span class="gr-m">QBO Advanced units</span><span class="gr-r">44.4K → 46K+</span><span class="gr-d">+3%</span></div>
         <div class="gr"><span class="gr-m">Advanced conversion</span><span class="gr-r">4.9% → 6.2%</span><span class="gr-d">+27%</span></div>
         <div class="gr"><span class="gr-m">Payroll attach</span><span class="gr-r">32% → 39%</span><span class="gr-d">+7 pts</span></div>
         <div class="gr"><span class="gr-m">Payments attach</span><span class="gr-r">12.6% → 16.1%</span><span class="gr-d">+3.5 pts</span></div>
-        <p class="goal-note">Comp now pays attach (80/20) as volume moves to value. Conversion carries the plan.</p>
+        <p class="gc-note">Comp now pays attach (80/20) as volume moves to value. Conversion carries the plan.</p>
       </div>
-      <div class="goal-col">
-        <div class="goal-kicker">EMM · QBO Advanced</div>
-        <div class="goal-h">Higher value and growing</div>
+      <div class="gc">
+        <div class="gc-kicker">EMM · QBO Advanced</div>
+        <div class="gc-h">Higher value and growing</div>
         <div class="gr"><span class="gr-m">Advanced revenue</span><span class="gr-r">$118M → $133M</span><span class="gr-d">+13%</span></div>
         <div class="gr"><span class="gr-m">EMM AE units</span><span class="gr-r">1.3K → 4.0K</span><span class="gr-d">3×</span></div>
         <div class="gr"><span class="gr-m">Productivity per AE</span><span class="gr-r">$250K → $600K</span><span class="gr-d">2.4×</span></div>
         <div class="gr"><span class="gr-m">Advanced units</span><span class="gr-r">7.4K → 8.9K</span><span class="gr-d">+21%</span></div>
-        <p class="goal-note">Biggest shift: standing up an outbound hunter motion, growing from 21 to 40 sellers.</p>
+        <p class="gc-note">Biggest shift: standing up an outbound hunter motion, growing from 21 to 40 sellers.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── GAPS ── -->
+<!-- GAPS -->
 <div class="sec">
-  <div class="sec-head"><span class="sec-lbl">Risk</span><span class="sec-ttl">What is not moving</span></div>
+  <div class="sec-head"><div class="sec-lbl">Risk</div><div class="sec-ttl">What is not moving</div></div>
   <div class="sec-body" style="padding:0;">
     <div class="gaps">
       <div class="gap-col">
         <div class="gap-n">85 ITF</div>
         <div class="gap-lbl">Payroll / Workforce GNS</div>
-        <div class="gap-body">SMB Sales is 6,418 units vs 7,756 last year through W10. Sales carries 74% of the enterprise miss. Advanced displaced the Core + Payroll bundle (1,933 units → 301).<br><br>Q2: 8.3K at run rate · 9.4K with committed moves · 9.8K ceiling · needs 10.4K.</div>
+        <div class="gap-body">SMB Sales is 6,418 units vs 7,756 last year through W10. Sales carries 74% of the enterprise miss. Advanced displaced the Core + Payroll bundle (1,933 units → 301). Q2 needs 10.4K; at current run rate we land at 8.3K.</div>
       </div>
       <div class="gap-col">
         <div class="gap-n">55 ITF</div>
         <div class="gap-lbl">Payments GNA</div>
-        <div class="gap-body">GNA is 55 ITF while TPV is 125 ITF — fewer accounts carrying more volume. Lead pass conversion is 2.7% (EMM AE) to 5.4% (EMM IB and OB). New lead pass process pending.</div>
+        <div class="gap-body">GNA is 55 ITF while TPV is 125 ITF — fewer accounts carrying more volume. Lead pass sits at 2.7% (EMM AE) to 5.4% (EMM IB and OB). New process is pending.</div>
       </div>
       <div class="gap-col">
         <div class="gap-n">90 ITF</div>
@@ -697,24 +819,24 @@
   </div>
 </div>
 
-<!-- ── LEADERS ── -->
+<!-- LEADERS -->
 <div class="sec">
-  <div class="sec-head"><span class="sec-lbl">Who you should know</span><span class="sec-ttl">Leaders of our seven sales engines</span></div>
+  <div class="sec-head"><div class="sec-lbl">Who you should know</div><div class="sec-ttl">Leaders of our seven sales engines</div></div>
   <div class="sec-body" style="padding:0;">
     <div class="leaders">
-      <div class="ldr"><img src="chris-irwin.png" alt="Chris Irwin" class="ldr-av"/><div class="ldr-name">Chris Irwin</div><div class="ldr-role">IB Phone</div><div class="ldr-desc">Leads core SMB inbound and the push toward new-to-QuickBooks and existing customers.</div></div>
-      <div class="ldr"><img src="whitney-lawson.png" alt="Whitney Lawson" class="ldr-av"/><div class="ldr-name">Whitney Lawson</div><div class="ldr-role">Core Outbound</div><div class="ldr-desc">Partnering with enablement to lift Advanced conversion across the outbound motion.</div></div>
-      <div class="ldr"><img src="anthony-salorio.png" alt="Anthony Salorio" class="ldr-av"/><div class="ldr-name">Anthony Salorio</div><div class="ldr-role">IB Chat</div><div class="ldr-desc">Bringing stalled Advanced opportunities back with SMS Reignite.</div></div>
-      <div class="ldr"><img src="john-lohmeier.png" alt="John Lohmeier" class="ldr-av"/><div class="ldr-name">John Lohmeier</div><div class="ldr-role">CDS + S2S / Care</div><div class="ldr-desc">Leads our largest engine. Growing the payroll pod from 9 to 19 sellers before Jan 1.</div></div>
-      <div class="ldr"><img src="steven-kish.png" alt="Steven Kish" class="ldr-av"/><div class="ldr-name">Steven Kish</div><div class="ldr-role">EMM AE</div><div class="ldr-desc">Leads the full-cycle hunters. HVS team had its biggest Advanced week yet in W11.</div></div>
-      <div class="ldr"><img src="dan-buckingham.png" alt="Dan Buckingham" class="ldr-av"/><div class="ldr-name">Dan Buckingham</div><div class="ldr-role">EMM Outbound and AE</div><div class="ldr-desc">Filling five open OB seats and running the Workforce Upgrade Playbook.</div></div>
+      <div class="ldr"><img src="chris-irwin.png" class="ldr-av" alt="Chris Irwin"/><div class="ldr-name">Chris Irwin</div><div class="ldr-role">IB Phone</div><div class="ldr-desc">Leads core SMB inbound and the push toward new-to-QuickBooks and existing customers.</div></div>
+      <div class="ldr"><img src="whitney-lawson.png" class="ldr-av" alt="Whitney Lawson"/><div class="ldr-name">Whitney Lawson</div><div class="ldr-role">Core Outbound</div><div class="ldr-desc">Partnering with enablement to lift Advanced conversion across the outbound motion.</div></div>
+      <div class="ldr"><img src="anthony-salorio.png" class="ldr-av" alt="Anthony Salorio"/><div class="ldr-name">Anthony Salorio</div><div class="ldr-role">IB Chat</div><div class="ldr-desc">Bringing stalled Advanced opportunities back with SMS Reignite.</div></div>
+      <div class="ldr"><img src="john-lohmeier.png" class="ldr-av" alt="John Lohmeier"/><div class="ldr-name">John Lohmeier</div><div class="ldr-role">CDS + S2S / Care</div><div class="ldr-desc">Leads our largest engine. Growing the payroll pod from 9 to 19 sellers before Jan 1.</div></div>
+      <div class="ldr"><img src="steven-kish.png" class="ldr-av" alt="Steven Kish"/><div class="ldr-name">Steven Kish</div><div class="ldr-role">EMM AE</div><div class="ldr-desc">Leads the full-cycle hunters. HVS team had its biggest Advanced week yet in W11.</div></div>
+      <div class="ldr"><img src="dan-buckingham.png" class="ldr-av" alt="Dan Buckingham"/><div class="ldr-name">Dan Buckingham</div><div class="ldr-role">EMM Outbound and AE</div><div class="ldr-desc">Filling five open OB seats and running the Workforce Upgrade Playbook.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ── COMMITMENTS ── -->
+<!-- COMMITMENTS -->
 <div class="sec">
-  <div class="sec-head"><span class="sec-lbl">Q2 Actions</span><span class="sec-ttl">Four commitments are owned and dated; three decisions need your input first</span></div>
+  <div class="sec-head"><div class="sec-lbl">Q2 Actions</div><div class="sec-ttl">Four commitments are owned and dated; three decisions need your input first</div></div>
   <div class="sec-body">
     <table class="ct">
       <thead><tr><th>Commitment</th><th>Owner</th><th>Due</th></tr></thead>
@@ -753,9 +875,9 @@
   </div>
 </div>
 
-<!-- ── VALUES ── -->
+<!-- VALUES -->
 <div class="sec">
-  <div class="sec-head"><span class="sec-lbl">Culture</span><span class="sec-ttl">What we value, and how it shows up</span></div>
+  <div class="sec-head"><div class="sec-lbl">Culture</div><div class="sec-ttl">What we value, and how it shows up</div></div>
   <div class="sec-body" style="padding:0;">
     <div class="vals">
       <div class="val"><div class="val-n">Platform first</div><div class="val-d">Lead with the whole platform and the customer's problem, then bring in every product they need.</div></div>
@@ -764,9 +886,9 @@
       <div class="val"><div class="val-n">Sell to the need</div><div class="val-d">Discovery over pressure. We lead with the customer's problem.</div></div>
       <div class="val"><div class="val-n">One team</div><div class="val-d">SMB and EMM engines share one message and cheer each other on.</div></div>
     </div>
-    <div class="closing">
-      We already found the engine. Now we scale it, engine by engine.
-      <cite>Melissa Steffen &nbsp;·&nbsp; VP, QBO SMB Sales</cite>
+    <div class="closing-dark">
+      <p class="closing-q">We already found the engine. Now we scale it, engine by engine.</p>
+      <span class="closing-cite">Melissa Steffen &nbsp;·&nbsp; VP, QBO SMB Sales</span>
     </div>
   </div>
 </div>
