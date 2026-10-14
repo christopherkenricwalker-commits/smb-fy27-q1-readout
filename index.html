@@ -173,7 +173,6 @@
     .split-r{padding:1.75rem}
     .split-kicker{font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem}
     .sp-img{width:100%;display:block;border-radius:12px;margin-bottom:1.25rem;border:1px solid var(--bordl);
-      transition:transform .5s cubic-bezier(.16,1,.3,1)}
     .sp-img:hover{transform:scale(1.015)}
     .sp-name{font-size:1.45rem;font-weight:800;color:var(--t1);letter-spacing:-.025em;margin-bottom:.15rem}
     .sp-role{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.9rem}
@@ -299,12 +298,6 @@
     }
   
     /* ─── SPOTLIGHT ROW ─── */
-    .spot-row{display:grid;grid-template-columns:260px 1fr;gap:0;border-top:1px solid var(--bord)}
-    
-    .spot-img-col img{width:100%;border-radius:12px;display:block;border:1px solid var(--bordl);
-      transition:transform .5s cubic-bezier(.16,1,.3,1)}
-    .spot-img-col img:hover{transform:scale(1.025)}
-    
     .spot-name{font-size:1.35rem;font-weight:800;color:var(--t1);letter-spacing:-.025em;margin-bottom:.15rem}
     .spot-role{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.7rem}
     .spot-body{font-size:.87rem;color:var(--t3);line-height:1.76;margin-bottom:1.1rem}
@@ -502,16 +495,17 @@
 
   
     /* ─── SPOT CAROUSEL ─── */
-    .spot-row { display:grid; grid-template-columns:400px 1fr; min-height:380px; border-top:1px solid var(--bord) }
-    .spot-car-wrap { position:relative; overflow:hidden; min-height:380px }
-    .sc2 { position:absolute; inset:0; background-size:cover; background-position:center top;
-           opacity:0; transition:opacity .9s ease-in-out; z-index:0 }
-    .sc2.on { opacity:1; z-index:1 }
-    .sc2-dots { position:absolute; bottom:.9rem; left:50%; transform:translateX(-50%);
-                display:flex; gap:.45rem; z-index:4 }
-    .sc2-dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.4);
-               cursor:pointer; transition:background .3s,transform .3s; border:1px solid rgba(255,255,255,.5) }
-    .sc2-dot.on { background:#fff; transform:scale(1.4) }
+    .spot-row{display:grid;grid-template-columns:400px 1fr;min-height:380px;border-top:1px solid var(--bord)}
+    .spot-car-wrap{position:relative;overflow:hidden;min-height:380px}
+    .sc2{position:absolute;inset:0;background-size:cover;background-position:center top;
+         opacity:0;transition:opacity .9s ease-in-out;z-index:0}
+    .sc2.on{opacity:1;z-index:1}
+    .sc2-dots{position:absolute;bottom:.9rem;left:50%;transform:translateX(-50%);
+              display:flex;gap:.45rem;z-index:4}
+    .sc2-dot{width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.25);
+             cursor:pointer;transition:background .3s,transform .3s;border:1px solid rgba(0,0,0,.15)}
+    .sc2-dot.on{background:var(--blue);transform:scale(1.4)}
+    .spot-text-col{padding:2.25rem 2.5rem;display:flex;flex-direction:column;justify-content:center}
 
   </style>
 </head>
@@ -788,7 +782,6 @@
 
   <!-- MADDIE SPOTLIGHT — trade show carousel -->
   <div class="spot-row" id="spotRow">
-    <!-- CAROUSEL LEFT -->
     <div class="spot-car-wrap" id="spotCar">
       <div class="sc2 on" style="background-image:url('maddie.png')"></div>
       <div class="sc2"    style="background-image:url('ts1.png')"></div>
@@ -796,7 +789,6 @@
       <div class="sc2"    style="background-image:url('ts3.png')"></div>
       <div class="sc2-dots" id="spotDots"></div>
     </div>
-    <!-- TEXT RIGHT -->
     <div class="spot-text-col">
       <div class="split-kicker">Field spotlight</div>
       <div class="spot-name">Madeline Crosby</div>
@@ -808,4 +800,143 @@
         <div><div class="spot-sn" data-count="253">0</div><div class="spot-sl">Maddie personal ITF %</div></div>
       </div>
     </div>
-  </div>>
+  </div>
+  <div class="sc-foot">Scope is Inbound, Outbound, EMM and CDS; S2S excluded unless noted. W9 attach cut is latest published. EMM Advanced is share of aspiration (61 IB · 57 OB · 81 AE), not ITF to forecast. Intuit | SMB and EMM | FY27 Q1 | Oct 14, 2026 | Internal</div>
+</div>
+
+<!-- ACTIVATION -->
+<div class="sec reveal"><div class="sec-head"><div class="sec-lbl">FY27 Strategy</div><div class="sec-ttl">Two motions, one team, one number</div></div><div class="sec-body" style="padding:0"><div class="goals"><div class="gc"><div class="gc-kicker">SMB · Core and high velocity</div><div class="gc-h">Scaled and efficient</div><div class="gr"><span class="gr-m">QBO Advanced units</span><span class="gr-r">44.4K → 46K+</span><span class="gr-d">+3%</span></div><div class="gr"><span class="gr-m">Advanced conversion</span><span class="gr-r">4.9% → 6.2%</span><span class="gr-d">+27%</span></div><div class="gr"><span class="gr-m">Payroll attach</span><span class="gr-r">32% → 39%</span><span class="gr-d">+7 pts</span></div><div class="gr"><span class="gr-m">Payments attach</span><span class="gr-r">12.6% → 16.1%</span><span class="gr-d">+3.5 pts</span></div><p class="gc-note">Comp now pays attach (80/20). Conversion carries the plan.</p></div><div class="gc"><div class="gc-kicker">EMM · QBO Advanced</div><div class="gc-h">Higher value and growing</div><div class="gr"><span class="gr-m">Advanced revenue</span><span class="gr-r">$118M → $133M</span><span class="gr-d">+13%</span></div><div class="gr"><span class="gr-m">EMM AE units</span><span class="gr-r">1.3K → 4.0K</span><span class="gr-d">3×</span></div><div class="gr"><span class="gr-m">Productivity per AE</span><span class="gr-r">$250K → $600K</span><span class="gr-d">2.4×</span></div><div class="gr"><span class="gr-m">Advanced units</span><span class="gr-r">7.4K → 8.9K</span><span class="gr-d">+21%</span></div><p class="gc-note">Biggest shift: standing up an outbound hunter motion, growing from 21 to 40 sellers.</p></div></div></div></div>
+
+<!-- GAPS -->
+<div class="sec reveal"><div class="sec-head"><div class="sec-lbl">Risk</div><div class="sec-ttl">What is not moving</div></div><div class="sec-body" style="padding:0"><div class="gaps"><div class="gap-col"><div class="gap-n" data-count="85">0</div><div class="gap-lbl">Payroll / Workforce GNS</div><div class="gap-body">SMB Sales is 6,418 units vs 7,756 last year through W10. Sales carries 74% of the enterprise miss. Advanced displaced the Core + Payroll bundle (1,933 units → 301). Q2 needs 10.4K; at current run rate we land at 8.3K.</div></div><div class="gap-col"><div class="gap-n" data-count="55">0</div><div class="gap-lbl">Payments GNA</div><div class="gap-body">GNA is 55 ITF while TPV is 125 ITF — fewer accounts carrying more volume. Lead pass sits at 2.7% (EMM AE) to 5.4% (EMM IB and OB). New process pending.</div></div><div class="gap-col"><div class="gap-n" data-count="90">0</div><div class="gap-lbl">EMM AE Workforce GNS</div><div class="gap-body">AE Advanced rebounded to 89 units vs 81 aspiration in W11 — biggest week yet for HVS. But Workforce GNS has lagged five consecutive weeks.</div></div></div></div></div>
+
+<!-- LEADERS -->
+<div class="sec reveal"><div class="sec-head"><div class="sec-lbl">Who you should know</div><div class="sec-ttl">Leaders of our seven sales engines</div></div><div class="sec-body" style="padding:0"><div class="leaders"><div class="ldr"><img src="chris-irwin.png" class="ldr-av" alt="Chris Irwin"/><div class="ldr-name">Chris Irwin</div><div class="ldr-role">IB Phone</div><div class="ldr-desc">Leads core SMB inbound and the push toward new-to-QuickBooks and existing customers.</div></div><div class="ldr"><img src="whitney-lawson.png" class="ldr-av" alt="Whitney Lawson"/><div class="ldr-name">Whitney Lawson</div><div class="ldr-role">Core Outbound</div><div class="ldr-desc">Partnering with enablement to lift Advanced conversion across the outbound motion.</div></div><div class="ldr"><img src="anthony-salorio.png" class="ldr-av" alt="Anthony Salorio"/><div class="ldr-name">Anthony Salorio</div><div class="ldr-role">IB Chat</div><div class="ldr-desc">Bringing stalled Advanced opportunities back with SMS Reignite.</div></div><div class="ldr"><img src="john-lohmeier.png" class="ldr-av" alt="John Lohmeier"/><div class="ldr-name">John Lohmeier</div><div class="ldr-role">CDS + S2S / Care</div><div class="ldr-desc">Leads our largest engine. Growing the payroll pod from 9 to 19 sellers before Jan 1.</div></div><div class="ldr"><img src="steven-kish.png" class="ldr-av" alt="Steven Kish"/><div class="ldr-name">Steven Kish</div><div class="ldr-role">EMM AE</div><div class="ldr-desc">Leads the full-cycle hunters. HVS team had its biggest Advanced week yet in W11.</div></div><div class="ldr"><img src="dan-buckingham.png" class="ldr-av" alt="Dan Buckingham"/><div class="ldr-name">Dan Buckingham</div><div class="ldr-role">EMM Outbound and AE</div><div class="ldr-desc">Filling five open OB seats and running the Workforce Upgrade Playbook.</div></div></div></div></div>
+
+<!-- COMMITMENTS -->
+<div class="sec reveal"><div class="sec-head"><div class="sec-lbl">Q2 Actions</div><div class="sec-ttl">Four commitments are owned and dated; three decisions need your input first</div></div><div class="sec-body"><table class="ct"><thead><tr><th>Commitment</th><th>Owner</th><th>Due</th></tr></thead><tbody><tr><td>Grow the CDS payroll pod from 9 to 19 sellers (+481 units)</td><td class="ct-own">John Lohmeier</td><td class="ct-due">Before Jan 1</td></tr><tr><td>Fill five open EMM OB seats (+140) and run the Workforce Upgrade Playbook in EMM AE, 7–15 per week</td><td class="ct-own">Dan Buckingham</td><td class="ct-due">Q2</td></tr><tr><td>Launch switcher offer and campaigns ahead of the Dec 1 Desktop Payroll price increase (+182)</td><td class="ct-own">Marketing, Pricing</td><td class="ct-due">Nov 30</td></tr><tr><td>Finalize the lead pass process, then run road shows</td><td class="ct-own">Kinjal Icecreamwala</td><td class="ct-due">Q2</td></tr></tbody></table><div class="bs"><div class="bs-h">Brainstorm — not yet committed</div><ul><li>Coach reps to stay in the payroll conversation after a competitor mention. Inbound CDS and EMM drop it ~45% of the time — 3× the rate of other channels.</li><li>Move CDS from pitching every customer to pitching every resolved contact.</li></ul></div><div class="dec"><div class="dec-h">Where we want your input before we commit · Working session Oct 28</div><div class="dec-row"><div class="dec-q">How payroll units are credited across SMB Sales, CDS and S2S</div><div class="dec-hh">One credit rule that sends CDS about 100 existing-customer payroll sales a week (+105)</div><div class="dec-m"><strong>Travis Walter, Customer Success, Finance</strong><span class="dec-date">Oct 28</span></div></div><div class="dec-row"><div class="dec-q">What Sales is forecast against for QBO and payroll</div><div class="dec-hh">One QBO and payroll forecast; today Sales reads 69 ITF on QBO volume against the payroll forecast</div><div class="dec-m"><strong>Finance, Travis Walter</strong><span class="dec-date">Oct 28</span></div></div><div class="dec-row"><div class="dec-q">How payroll demand returns to IB Phone and Outbound</div><div class="dec-hh">Fix payroll routing and the IVA (+486) and add payroll-fit Outbound leads (+309)</div><div class="dec-m"><strong>Marketing, IVA owners</strong><span class="dec-date">Oct 28</span></div></div></div></div></div>
+
+<!-- VALUES -->
+<div class="sec reveal"><div class="sec-head"><div class="sec-lbl">Culture</div><div class="sec-ttl">What we value, and how it shows up</div></div><div class="sec-body" style="padding:0"><div class="vals"><div class="val"><div class="val-n">Platform first</div><div class="val-d">Lead with the whole platform and the customer's problem, then bring in every product they need.</div></div><div class="val"><div class="val-n">Own your number</div><div class="val-d">Every engine owns its target, its bets and its results.</div></div><div class="val"><div class="val-n">Bring the blocker</div><div class="val-d">Leaders share what is stuck as readily as what is working.</div></div><div class="val"><div class="val-n">Sell to the need</div><div class="val-d">Discovery over pressure. We lead with the customer's problem.</div></div><div class="val"><div class="val-n">One team</div><div class="val-d">SMB and EMM engines share one message and cheer each other on.</div></div></div><div class="closing-dark"><div class="c-orb c-orb-1"></div><div class="c-orb c-orb-2"></div><p class="closing-q">We already found the engine. Now we scale it, engine by engine.</p><span class="closing-cite">Melissa Steffen · VP, QBO SMB Sales</span></div></div></div>
+
+
+</div>
+
+<script>
+// Nav scroll
+const nav=document.getElementById('topnav');
+window.addEventListener('scroll',()=>nav.classList.toggle('up',scrollY>8),{passive:true});
+
+// Count-up
+function countUp(el,target,dur=1400){
+  const s=performance.now();
+  (function step(now){
+    const p=Math.min((now-s)/dur,1);
+    const e=1-Math.pow(1-p,4);
+    el.textContent=Math.round(e*target);
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=target;
+  })(performance.now());
+}
+
+// Intersection Observer
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('on');
+    e.target.querySelectorAll('[data-count]').forEach(el=>{
+      if(!el.dataset.done){el.dataset.done=1;countUp(el,+el.dataset.count)}
+    });
+    io.unobserve(e.target);
+  });
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+document.querySelectorAll('.bx-num[data-count]').forEach(el=>countUp(el,+el.dataset.count,1800));
+
+// Mouse-tracking spotlight on cards + sections
+function addSpotlight(selector){
+  document.querySelectorAll(selector).forEach(el=>{
+    el.addEventListener('mousemove',e=>{
+      const r=el.getBoundingClientRect();
+      el.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+      el.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+    });
+    // hero bento cells too
+  });
+}
+addSpotlight('.card');
+addSpotlight('.sec');
+addSpotlight('.pull');
+// hero bento
+document.querySelectorAll('.bx').forEach(el=>{
+  el.addEventListener('mousemove',e=>{
+    const r=el.getBoundingClientRect();
+    el.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+    el.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+
+// Parallax on activation photo
+const ap=document.getElementById('actPhoto');
+if(ap){
+  let ticking=false;
+  window.addEventListener('scroll',()=>{
+    if(!ticking){requestAnimationFrame(()=>{
+      const r=ap.closest('.act-img-wrap').getBoundingClientRect();
+      const vh=innerHeight;
+      if(r.bottom>0&&r.top<vh){
+        const prog=(vh-r.top)/(vh+r.height);
+        ap.style.transform=`translateY(${(prog-.5)*80}px)`;
+      }
+      ticking=false;
+    });ticking=true;}
+  },{passive:true});
+}
+
+// ── Platform Activation Carousel ──────────────────────────────────
+(function(){
+  const slides = document.querySelectorAll('#actCarousel .cs');
+  const dotsEl = document.getElementById('csDots');
+  let cur = 0;
+  // build dots
+  slides.forEach((_,i)=>{
+    const d = document.createElement('div');
+    d.className = 'cs-dot' + (i===0?' on':'');
+    d.onclick = ()=>{ go(i); clearInterval(timer); timer=setInterval(next,2000); };
+    dotsEl.appendChild(d);
+  });
+  const dots = dotsEl.querySelectorAll('.cs-dot');
+  function go(n){
+    slides[cur].classList.remove('on');
+    dots[cur].classList.remove('on');
+    cur = n;
+    slides[cur].classList.add('on');
+    dots[cur].classList.add('on');
+  }
+  function next(){ go((cur+1)%slides.length); }
+  let timer = setInterval(next, 2000);
+})();
+
+
+// ── Maddie Spotlight Carousel ──
+(function(){
+  const slides=document.querySelectorAll('#spotCar .sc2');
+  const dotsEl=document.getElementById('spotDots');
+  if(!slides.length||!dotsEl)return;
+  let cur=0;
+  slides.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='sc2-dot'+(i===0?' on':'');
+    d.onclick=()=>{go(i);clearInterval(t);t=setInterval(next,2500);};
+    dotsEl.appendChild(d);
+  });
+  const dots=dotsEl.querySelectorAll('.sc2-dot');
+  function go(n){slides[cur].classList.remove('on');dots[cur].classList.remove('on');cur=n;slides[cur].classList.add('on');dots[cur].classList.add('on');}
+  function next(){go((cur+1)%slides.length);}
+  let t=setInterval(next,2500);
+})();
+
+</script>
+</body>
+</html>
