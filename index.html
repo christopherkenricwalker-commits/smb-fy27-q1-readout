@@ -9,1211 +9,632 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --ink:        #0A0F1C;
-      --ink-2:      #1E2840;
-      --ink-3:      #3D4B66;
-      --ink-4:      #6B7A96;
-      --ink-5:      #A0ABBE;
-      --rule:       #D4D9E4;
-      --rule-light: #EAECF2;
-      --bg:         #F7F8FA;
-      --white:      #FFFFFF;
-      --accent:     #0455C2;
-      --accent-2:   #E8EFFE;
-      --up:         #0D6B3A;
-      --up-bg:      #EBF7F1;
-      --down:       #9B1C1C;
-      --down-bg:    #FEF2F2;
-      --warn:       #7C4A00;
-      --warn-bg:    #FFFBEB;
+      --ink:    #0A0F1C;
+      --ink2:   #1E2840;
+      --ink3:   #3D4B66;
+      --ink4:   #6B7A96;
+      --ink5:   #A0ABBE;
+      --rule:   #D4D9E4;
+      --rulel:  #EAECF2;
+      --bg:     #F7F8FA;
+      --white:  #FFFFFF;
+      --acc:    #0455C2;
+      --up:     #0D6B3A;
+      --upbg:   #EBF7F1;
+      --dn:     #9B1C1C;
+      --dnbg:   #FEF2F2;
+      --warn:   #92400E;
+      --warnbg: #FFFBEB;
     }
-
     html { font-size: 14px; }
-
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--ink);
-      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─────────────────────────────────────────
-       MASTHEAD
-    ───────────────────────────────────────── */
-    .masthead {
-      background: var(--ink);
-      padding: 0;
-    }
-    .masthead-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 3rem 2rem 0;
-    }
-    .masthead-rule {
-      border: none;
-      border-top: 3px solid var(--accent);
-      margin-bottom: 1.75rem;
-    }
-    .masthead-meta {
+    /* ── GLOBAL NAV BAR ── */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      padding: 0.6rem 2rem;
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.6rem;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-logo {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--acc);
+      letter-spacing: -0.01em;
+      font-style: italic;
+    }
+    .nav-div { color: var(--rule); }
+    .nav-path { font-size: 0.72rem; color: var(--ink4); }
+
+    /* ── MASTHEAD ── */
+    .masthead { background: var(--ink); }
+    .masthead-inner { max-width: 980px; margin: 0 auto; padding: 2.5rem 2rem 0; }
+    .masthead-rule { border: none; border-top: 3px solid var(--acc); margin-bottom: 1.5rem; }
+    .masthead-eyeline {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.5rem;
     }
     .masthead-org {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-5);
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--ink5);
     }
-    .masthead-date {
-      font-size: 0.65rem;
-      font-weight: 400;
-      color: var(--ink-5);
-      letter-spacing: 0.04em;
+    .masthead-date { font-size: 0.62rem; color: var(--ink5); }
+    .masthead-hed {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 400; color: #fff;
+      line-height: 1.07; letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
     }
-    .masthead-title {
-      font-family: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-      font-size: clamp(2.6rem, 6vw, 4.2rem);
-      font-weight: 400;
-      color: #fff;
-      line-height: 1.06;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.01em;
-    }
-    .masthead-title em { font-style: italic; color: #7BA4FF; }
+    .masthead-hed em { font-style: italic; color: #7BA4FF; }
     .masthead-deck {
-      font-size: 0.95rem;
-      color: var(--ink-5);
-      max-width: 600px;
-      line-height: 1.55;
-      font-weight: 300;
-      margin-bottom: 2.5rem;
+      font-size: 0.88rem; font-weight: 300;
+      color: var(--ink5); max-width: 560px;
+      line-height: 1.55; margin-bottom: 2.25rem;
     }
     .masthead-deck strong { color: #A8BDDB; font-weight: 500; }
 
     /* stat strip */
-    .stat-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+    .strip {
+      display: grid; grid-template-columns: repeat(4,1fr);
       border-top: 1px solid #1E2840;
     }
-    .stat-cell {
-      padding: 1.4rem 1.5rem;
+    .strip-cell {
+      padding: 1.3rem 1.4rem;
       border-right: 1px solid #1E2840;
       position: relative;
     }
-    .stat-cell:last-child { border-right: none; }
-    .stat-cell::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--cell-color, transparent);
+    .strip-cell:last-child { border-right: none; }
+    .strip-cell::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background: var(--cc, transparent);
     }
-    .stat-cell.green { --cell-color: #22C55E; }
-    .stat-cell.blue  { --cell-color: #3B82F6; }
-    .stat-cell.teal  { --cell-color: #14B8A6; }
-    .stat-num {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1;
-      letter-spacing: -0.02em;
+    .strip-cell.g { --cc:#22C55E; }
+    .strip-cell.b { --cc:#3B82F6; }
+    .strip-cell.t { --cc:#14B8A6; }
+    .snum {
+      font-size: 2.3rem; font-weight: 700; color: #fff;
+      line-height: 1; letter-spacing: -0.02em;
       font-variant-numeric: tabular-nums;
     }
-    .stat-num sup {
-      font-size: 1rem;
-      font-weight: 500;
-      vertical-align: super;
-      margin-left: 1px;
-      color: #6B7A96;
-    }
-    .stat-label {
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-5);
-      margin-top: 0.3rem;
-      margin-bottom: 0.15rem;
-    }
-    .stat-sub {
-      font-size: 0.7rem;
-      color: var(--ink-4);
-      line-height: 1.4;
-    }
+    .snum sup { font-size: 0.9rem; font-weight: 500; color: #6B7A96; vertical-align: super; margin-left:1px; }
+    .slbl { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink5); margin-top:0.3rem; }
+    .ssub { font-size: 0.68rem; color: var(--ink4); margin-top:0.1rem; line-height:1.4; }
 
-    /* ─────────────────────────────────────────
-       BODY LAYOUT
-    ───────────────────────────────────────── */
-    .body {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 2rem 5rem;
-    }
+    /* ── BODY ── */
+    .body { max-width: 980px; margin: 0 auto; padding: 0 2rem 5rem; }
 
-    /* ─────────────────────────────────────────
-       SECTION ANATOMY
-    ───────────────────────────────────────── */
-    .section {
+    /* ── SHEET (page-like section) ── */
+    .sheet {
       background: var(--white);
       border: 1px solid var(--rule);
       margin-top: 1.5rem;
+      overflow: hidden;
     }
-    .section-head {
-      padding: 1.1rem 1.75rem 0.9rem;
+    .sheet-topbar {
+      background: var(--ink);
+      padding: 0.5rem 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .sheet-topbar-logo { font-size: 0.68rem; font-weight: 800; color: #fff; font-style: italic; }
+    .sheet-topbar-path { font-size: 0.62rem; color: var(--ink5); }
+    .sheet-hed {
+      padding: 1.25rem 1.5rem 0.35rem;
       border-bottom: 1px solid var(--rule);
-      display: flex;
-      align-items: baseline;
-      gap: 1.25rem;
     }
-    .section-label {
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
+    .sheet-h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.3rem; font-weight: 400;
+      color: var(--ink); line-height: 1.25;
+    }
+    .sheet-sub {
+      font-size: 0.72rem; color: var(--ink4);
+      margin-top: 0.2rem; padding-bottom: 1rem;
+    }
+
+    /* ── SCORECARD TABLE ── */
+    .sc { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .sc thead th {
+      padding: 0.5rem 0.9rem;
+      text-align: left; background: var(--bg);
+      font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--ink4);
+      border-bottom: 1px solid var(--rule);
       white-space: nowrap;
     }
-    .section-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--ink);
+    .sc thead th:last-child { text-align:center; width:52px; }
+    .sc-grp td {
+      padding: 0.38rem 0.9rem;
+      font-size: 0.57rem; font-weight: 700;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--ink5); background: #FAFBFC;
+      border-top: 1px solid var(--rulel);
     }
-    .section-body { padding: 1.5rem 1.75rem; }
-
-    /* ─────────────────────────────────────────
-       LEDE / PULL QUOTE
-    ───────────────────────────────────────── */
-    .lede {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 1.25rem;
-      font-weight: 400;
-      line-height: 1.5;
-      color: var(--ink);
-      max-width: 700px;
-      margin-bottom: 1.25rem;
+    .sc tbody tr { border-bottom: 1px solid var(--rulel); }
+    .sc tbody tr:last-child { border-bottom: none; }
+    .sc td { padding: 0.58rem 0.9rem; vertical-align: middle; }
+    .sc-m { font-weight: 500; color: var(--ink); }
+    .sc-p { color: var(--ink5); white-space: nowrap; font-size: 0.72rem; }
+    .sc-a { font-size: 0.72rem; color: var(--ink4); }
+    .sc-n {
+      text-align: center; font-weight: 700;
+      font-size: 0.82rem; font-variant-numeric: tabular-nums;
     }
-    .lede em { font-style: italic; color: var(--accent); }
+    .sc-n.g { color: var(--up); }
+    .sc-n.a { color: var(--warn); }
+    .sc-n.r { color: var(--dn); }
 
-    .body-copy {
-      font-size: 0.85rem;
-      color: var(--ink-3);
-      line-height: 1.7;
-      max-width: 700px;
-      margin-bottom: 0.9rem;
-    }
-    .body-copy:last-child { margin-bottom: 0; }
-
-    /* ─────────────────────────────────────────
-       ATTACH ROW
-    ───────────────────────────────────────── */
-    .attach-row {
+    /* ── CHART + SPOTLIGHT SPLIT ── */
+    .split {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--rule);
-      margin-top: 1.5rem;
-    }
-    .attach-cell {
-      padding: 1.1rem 1.35rem;
-      border-right: 1px solid var(--rule);
-    }
-    .attach-cell:last-child { border-right: none; }
-    .attach-num {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--up);
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 0.25rem;
-      font-variant-numeric: tabular-nums;
-    }
-    .attach-label {
-      font-size: 0.7rem;
-      color: var(--ink-4);
-      line-height: 1.4;
-    }
-    .attach-label strong { color: var(--ink-3); font-weight: 600; display: block; }
-
-    /* ─────────────────────────────────────────
-       GOALS — TWO COLUMN
-    ───────────────────────────────────────── */
-    .goals-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: 1px solid var(--rule);
-    }
-    .goal-col { padding: 1.5rem 1.75rem; }
-    .goal-col:first-child { border-right: 1px solid var(--rule); }
-    .goal-kicker {
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 0.3rem;
-    }
-    .goal-col:first-child .goal-kicker { color: var(--accent); }
-    .goal-col:last-child  .goal-kicker { color: var(--up); }
-    .goal-heading {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 1.15rem;
-      color: var(--ink);
-      margin-bottom: 1.25rem;
-      line-height: 1.3;
-    }
-    .goal-rows { border-top: 1px solid var(--rule-light); }
-    .goal-row {
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      gap: 1rem;
-      align-items: baseline;
-      padding: 0.55rem 0;
-      border-bottom: 1px solid var(--rule-light);
-      font-size: 0.78rem;
-    }
-    .goal-row:last-child { border-bottom: none; }
-    .gr-metric { color: var(--ink-3); }
-    .gr-range  { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
-    .gr-delta  {
-      font-size: 0.65rem;
-      font-weight: 700;
-      min-width: 42px;
-      text-align: right;
-    }
-    .goal-col:first-child .gr-delta { color: var(--accent); }
-    .goal-col:last-child  .gr-delta { color: var(--up); }
-    .goal-note {
-      font-size: 0.7rem;
-      color: var(--ink-4);
-      margin-top: 1rem;
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--rule-light);
-      font-style: italic;
-      line-height: 1.5;
-    }
-
-    /* ─────────────────────────────────────────
-       SCORECARD TABLE
-    ───────────────────────────────────────── */
-    .sc-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
-    .sc-table thead th {
-      padding: 0.6rem 1rem;
-      text-align: left;
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-4);
-      border-bottom: 2px solid var(--ink);
-      white-space: nowrap;
-      background: var(--white);
-    }
-    .sc-table thead th:last-child { text-align: center; }
-    .sc-group td {
-      padding: 0.4rem 1rem;
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-4);
-      background: var(--bg);
+      grid-template-columns: 44% 56%;
       border-top: 1px solid var(--rule);
     }
-    .sc-table tbody tr { border-bottom: 1px solid var(--rule-light); }
-    .sc-table tbody tr:hover { background: #FAFBFC; }
-    .sc-table td { padding: 0.7rem 1rem; vertical-align: middle; }
-    .sc-metric { font-weight: 500; color: var(--ink); }
-    .sc-period { color: var(--ink-5); white-space: nowrap; font-size: 0.72rem; }
-    .sc-actual { font-size: 0.72rem; color: var(--ink-4); }
-    .sc-itf {
-      text-align: center;
-      font-size: 0.82rem;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
+    .split-l { padding: 1.25rem 1.5rem; border-right: 1px solid var(--rule); }
+    .split-r { padding: 1.25rem 1.5rem; }
+
+    .split-kicker {
+      font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--acc); margin-bottom: 0.6rem;
     }
-    .sc-itf.g { color: var(--up); }
-    .sc-itf.a { color: var(--warn); }
-    .sc-itf.r { color: var(--down); }
-    .sc-bar {
-      display: inline-block;
-      width: 3px;
-      height: 14px;
-      border-radius: 1px;
-      vertical-align: middle;
-      margin-right: 4px;
-    }
-    .sc-bar.g { background: var(--up); }
-    .sc-bar.a { background: #F59E0B; }
-    .sc-bar.r { background: var(--down); }
     .sc-foot {
-      padding: 0.65rem 1rem;
-      font-size: 0.67rem;
-      color: var(--ink-5);
+      padding: 0.6rem 1.5rem;
+      font-size: 0.65rem; color: var(--ink5);
       border-top: 1px solid var(--rule);
       line-height: 1.5;
     }
 
-    /* ─────────────────────────────────────────
-       GAPS — NOT MOVING
-    ───────────────────────────────────────── */
-    .gap-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--rule);
-    }
-    .gap-col {
-      padding: 1.4rem 1.5rem;
-      border-right: 1px solid var(--rule);
-    }
-    .gap-col:last-child { border-right: none; }
-    .gap-num {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--down);
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 0.15rem;
-      font-variant-numeric: tabular-nums;
-    }
-    .gap-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 0.65rem;
-      padding-bottom: 0.65rem;
-      border-bottom: 1px solid var(--rule-light);
-    }
-    .gap-body { font-size: 0.77rem; color: var(--ink-3); line-height: 1.65; }
-
-    /* ─────────────────────────────────────────
-       CHART PLACEHOLDER
-    ───────────────────────────────────────── */
-    .chart-ph {
-      border: 1.5px dashed var(--rule);
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 0.4rem;
-      padding: 2rem;
-      text-align: center;
-    }
-    .chart-ph-label {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-5);
-    }
-    .chart-ph-sub {
-      font-size: 0.68rem;
-      color: var(--ink-5);
-    }
-
-    /* Actual SVG chart */
-    .chart-svg-wrap {
-      padding: 1.5rem 1.75rem;
-      background: var(--white);
-    }
-
-    /* ─────────────────────────────────────────
-       SPOTLIGHT — PEOPLE
-    ───────────────────────────────────────── */
-    .spotlight-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border: 1px solid var(--rule);
-    }
-    .spotlight-col {
-      padding: 1.75rem 1.75rem;
-    }
-    .spotlight-col:first-child {
-      border-right: 1px solid var(--rule);
-    }
-
-    /* IMAGE PLACEHOLDER */
-    .img-ph {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: var(--bg);
-      border: 1.5px dashed var(--rule);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
-    }
-    .img-ph-icon { font-size: 1.5rem; color: var(--ink-5); }
-    .img-ph-label {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-5);
-      text-align: center;
-      padding: 0 1rem;
-    }
-    .img-ph-sub { font-size: 0.65rem; color: var(--ink-5); text-align: center; padding: 0 1rem; }
-
+    /* spotlight */
+    .sp-img { width:100%; display:block; border:1px solid var(--rulel); margin-bottom:0.9rem; }
     .sp-name {
       font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 1.3rem;
-      color: var(--ink);
-      margin-bottom: 0.1rem;
-      line-height: 1.2;
+      font-size: 1.15rem; color: var(--ink); line-height:1.2; margin-bottom:0.1rem;
     }
     .sp-role {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.9rem;
+      font-size: 0.6rem; font-weight: 700; letter-spacing:0.12em;
+      text-transform: uppercase; color: var(--acc); margin-bottom:0.75rem;
     }
-    .sp-body {
-      font-size: 0.8rem;
-      color: var(--ink-3);
-      line-height: 1.7;
-      margin-bottom: 1.1rem;
-    }
-    .sp-stats {
-      display: flex;
-      gap: 2rem;
-      padding-top: 0.9rem;
-      border-top: 1px solid var(--rule);
-    }
-    .sp-stat-num {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--up);
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-      margin-bottom: 0.15rem;
-    }
-    .sp-stat-label { font-size: 0.65rem; color: var(--ink-4); line-height: 1.35; }
+    .sp-body { font-size: 0.78rem; color: var(--ink3); line-height: 1.65; margin-bottom:0.85rem; }
+    .sp-stats { display:flex; gap:1.5rem; padding-top:0.75rem; border-top:1px solid var(--rulel); flex-wrap:wrap; }
+    .sp-sn { font-size:1.25rem; font-weight:700; color:var(--up); line-height:1; font-variant-numeric:tabular-nums; }
+    .sp-sl { font-size:0.62rem; color:var(--ink4); line-height:1.35; margin-top:0.15rem; }
 
-    /* ─────────────────────────────────────────
-       LEADERS
-    ───────────────────────────────────────── */
-    .leaders-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 1px solid var(--rule);
+    /* ── PLATFORM ACTIVATION SHEET ── */
+    .act-sheet { background: var(--white); border:1px solid var(--rule); margin-top:1.5rem; overflow:hidden; }
+    .act-topbar { background: var(--ink); padding:0.5rem 1.5rem; display:flex; align-items:center; gap:0.75rem; }
+    .act-topbar-logo { font-size:0.68rem; font-weight:800; color:#fff; font-style:italic; }
+    .act-topbar-path { font-size:0.62rem; color:var(--ink5); }
+    .act-hed { padding:1.25rem 1.5rem 0.8rem; border-bottom:1px solid var(--rule); }
+    .act-h2 {
+      font-family:'DM Serif Display', Georgia, serif;
+      font-size:1.3rem; font-weight:400; color:var(--ink); line-height:1.25;
     }
-    .leader-cell {
-      padding: 1.25rem 1.4rem;
-      border-right: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
+    .act-sub { font-size:0.72rem; color:var(--ink4); margin-top:0.2rem; }
+    .act-photo { width:100%; display:block; border-bottom:1px solid var(--rule); max-height:300px; object-fit:cover; object-position:center 30%; }
+    .act-caption { font-size:0.65rem; color:var(--ink5); padding:0.4rem 1.5rem; border-bottom:1px solid var(--rule); }
+    .act-stats {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      border-bottom:1px solid var(--rule);
     }
-    .leader-cell:nth-child(3n) { border-right: none; }
-    .leader-cell:nth-child(n+4) { border-bottom: none; }
-    .leader-init {
-      width: 30px; height: 30px;
-      background: var(--ink);
-      color: #fff;
-      font-size: 0.6rem;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 0.65rem;
-      letter-spacing: 0.04em;
+    .act-stat { padding:1.1rem 1.4rem; border-right:1px solid var(--rule); text-align:center; }
+    .act-stat:last-child { border-right:none; }
+    .act-sn {
+      font-family:'DM Serif Display', Georgia, serif;
+      font-size:1.8rem; font-weight:400; color:var(--ink); line-height:1;
     }
-    .leader-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 0.1rem; }
-    .leader-role {
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.55rem;
-    }
-    .leader-desc { font-size: 0.75rem; color: var(--ink-3); line-height: 1.55; }
+    .act-sl { font-size:0.65rem; color:var(--ink4); margin-top:0.25rem; line-height:1.4; }
+    .act-body { padding:1.5rem; }
+    .act-p { font-size:0.82rem; color:var(--ink3); line-height:1.7; margin-bottom:0.75rem; }
+    .act-p:last-child { margin-bottom:0; }
+    .act-p strong { color:var(--ink); font-weight:600; }
 
-    /* ─────────────────────────────────────────
-       COMMITMENTS
-    ───────────────────────────────────────── */
-    .commit-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-    .commit-table th {
-      text-align: left;
-      padding: 0.5rem 0.9rem;
-      font-size: 0.58rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-4);
-      border-bottom: 2px solid var(--ink);
-    }
-    .commit-table td {
-      padding: 0.8rem 0.9rem;
-      border-bottom: 1px solid var(--rule-light);
-      vertical-align: top;
-    }
-    .commit-table tr:last-child td { border-bottom: none; }
-    .cm-item { color: var(--ink); line-height: 1.5; }
-    .cm-owner { font-weight: 600; color: var(--ink); white-space: nowrap; }
-    .cm-due {
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: var(--accent);
-      white-space: nowrap;
-    }
+    /* ── GOALS ── */
+    .goals { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--rule); }
+    .goal-col { padding:1.4rem 1.6rem; }
+    .goal-col:first-child { border-right:1px solid var(--rule); }
+    .goal-kicker { font-size:0.58rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:0.3rem; }
+    .goal-col:first-child .goal-kicker { color:var(--acc); }
+    .goal-col:last-child  .goal-kicker { color:var(--up); }
+    .goal-h { font-family:'DM Serif Display', Georgia, serif; font-size:1.1rem; color:var(--ink); margin-bottom:1rem; }
+    .gr { display:grid; grid-template-columns:1fr auto auto; gap:0.85rem; align-items:baseline; padding:0.48rem 0; border-bottom:1px solid var(--rulel); font-size:0.77rem; }
+    .gr:last-of-type { border-bottom:none; }
+    .gr-m { color:var(--ink3); }
+    .gr-r { font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums; white-space:nowrap; }
+    .gr-d { font-size:0.64rem; font-weight:700; min-width:38px; text-align:right; }
+    .goal-col:first-child .gr-d { color:var(--acc); }
+    .goal-col:last-child  .gr-d { color:var(--up); }
+    .goal-note { font-size:0.69rem; color:var(--ink4); margin-top:0.85rem; padding-top:0.65rem; border-top:1px solid var(--rulel); font-style:italic; line-height:1.5; }
 
-    .brainstorm {
-      background: var(--bg);
-      border: 1px solid var(--rule);
-      padding: 1.1rem 1.4rem;
-      margin-top: 1.5rem;
-    }
-    .bs-head {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-4);
-      margin-bottom: 0.65rem;
-    }
-    .bs-list { list-style: none; }
-    .bs-list li {
-      font-size: 0.79rem;
-      color: var(--ink-3);
-      padding: 0.4rem 0;
-      border-bottom: 1px solid var(--rule-light);
-      padding-left: 1rem;
-      position: relative;
-      line-height: 1.55;
-    }
-    .bs-list li:last-child { border-bottom: none; }
-    .bs-list li::before {
-      content: '–';
-      position: absolute;
-      left: 0;
-      color: var(--ink-5);
-    }
+    /* ── GAPS ── */
+    .gaps { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--rule); }
+    .gap-col { padding:1.3rem 1.4rem; border-right:1px solid var(--rule); }
+    .gap-col:last-child { border-right:none; }
+    .gap-n { font-size:2.1rem; font-weight:700; color:var(--dn); line-height:1; letter-spacing:-0.02em; font-variant-numeric:tabular-nums; margin-bottom:0.15rem; }
+    .gap-lbl { font-size:0.7rem; font-weight:600; color:var(--ink); padding-bottom:0.6rem; margin-bottom:0.6rem; border-bottom:1px solid var(--rulel); }
+    .gap-body { font-size:0.76rem; color:var(--ink3); line-height:1.65; }
 
-    .decisions { margin-top: 1.5rem; }
-    .decisions-head {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--warn);
-      margin-bottom: 0.75rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .decision-row {
-      display: grid;
-      grid-template-columns: 2fr 2fr 1fr;
-      gap: 1.5rem;
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--rule-light);
-      align-items: start;
-    }
-    .decision-row:last-child { border-bottom: none; }
-    .dr-q { font-size: 0.8rem; font-weight: 600; color: var(--ink); line-height: 1.45; }
-    .dr-h { font-size: 0.77rem; color: var(--ink-3); line-height: 1.55; }
-    .dr-meta { font-size: 0.72rem; color: var(--ink-3); }
-    .dr-meta strong { color: var(--ink); font-weight: 600; display: block; margin-bottom: 0.3rem; }
-    .dr-date {
-      font-size: 0.62rem;
-      font-weight: 700;
-      color: var(--warn);
-      margin-top: 0.3rem;
-      display: block;
-    }
+    /* ── LEADERS ── */
+    .leaders { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--rule); }
+    .ldr { padding:1.2rem 1.35rem; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+    .ldr:nth-child(3n) { border-right:none; }
+    .ldr:nth-child(n+4) { border-bottom:none; }
+    .ldr-av { width:34px; height:34px; border-radius:50%; object-fit:cover; object-position:center top; display:block; margin-bottom:0.6rem; }
+    .ldr-av-init { width:34px; height:34px; border-radius:50%; background:var(--ink); color:#fff; font-size:0.58rem; font-weight:700; display:flex; align-items:center; justify-content:center; margin-bottom:0.6rem; }
+    .ldr-name { font-size:0.86rem; font-weight:600; color:var(--ink); margin-bottom:0.1rem; }
+    .ldr-role { font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--acc); margin-bottom:0.45rem; }
+    .ldr-desc { font-size:0.74rem; color:var(--ink3); line-height:1.55; }
 
-    /* ─────────────────────────────────────────
-       VALUES
-    ───────────────────────────────────────── */
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      border: 1px solid var(--rule);
-    }
-    .value-cell {
-      padding: 1.2rem 1rem;
-      border-right: 1px solid var(--rule);
-    }
-    .value-cell:last-child { border-right: none; }
-    .value-name {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.4rem;
-    }
-    .value-desc { font-size: 0.7rem; color: var(--ink-4); line-height: 1.5; }
+    /* ── COMMITMENTS ── */
+    .ct { width:100%; border-collapse:collapse; font-size:0.79rem; }
+    .ct th { text-align:left; padding:0.5rem 0.85rem; font-size:0.58rem; font-weight:700; letter-spacing:0.13em; text-transform:uppercase; color:var(--ink4); border-bottom:2px solid var(--ink); }
+    .ct td { padding:0.72rem 0.85rem; border-bottom:1px solid var(--rulel); vertical-align:top; }
+    .ct tr:last-child td { border-bottom:none; }
+    .ct-own { font-weight:600; color:var(--ink); white-space:nowrap; }
+    .ct-due { font-size:0.64rem; font-weight:700; color:var(--acc); white-space:nowrap; }
+
+    .bs { background:var(--bg); border:1px solid var(--rule); padding:1rem 1.35rem; margin-top:1.25rem; }
+    .bs-h { font-size:0.58rem; font-weight:700; letter-spacing:0.13em; text-transform:uppercase; color:var(--ink4); margin-bottom:0.55rem; }
+    .bs ul { list-style:none; }
+    .bs li { font-size:0.78rem; color:var(--ink3); padding:0.38rem 0 0.38rem 0.9rem; border-bottom:1px solid var(--rulel); position:relative; line-height:1.55; }
+    .bs li:last-child { border-bottom:none; }
+    .bs li::before { content:'–'; position:absolute; left:0; color:var(--ink5); }
+
+    .dec { margin-top:1.25rem; }
+    .dec-h { font-size:0.58rem; font-weight:700; letter-spacing:0.13em; text-transform:uppercase; color:var(--warn); margin-bottom:0.6rem; padding-bottom:0.45rem; border-bottom:1px solid var(--rule); }
+    .dec-row { display:grid; grid-template-columns:2fr 2fr 1fr; gap:1.25rem; padding:0.85rem 0; border-bottom:1px solid var(--rulel); align-items:start; }
+    .dec-row:last-child { border-bottom:none; }
+    .dec-q { font-size:0.79rem; font-weight:600; color:var(--ink); line-height:1.4; }
+    .dec-h2 { font-size:0.76rem; color:var(--ink3); line-height:1.55; }
+    .dec-m { font-size:0.71rem; color:var(--ink3); }
+    .dec-m strong { color:var(--ink); font-weight:600; display:block; margin-bottom:0.2rem; }
+    .dec-date { font-size:0.62rem; font-weight:700; color:var(--warn); display:block; margin-top:0.25rem; }
+
+    /* ── VALUES ── */
+    .vals { display:grid; grid-template-columns:repeat(5,1fr); border:1px solid var(--rule); }
+    .val { padding:1.1rem 1rem; border-right:1px solid var(--rule); }
+    .val:last-child { border-right:none; }
+    .val-n { font-size:0.74rem; font-weight:700; color:var(--ink); margin-bottom:0.35rem; }
+    .val-d { font-size:0.69rem; color:var(--ink4); line-height:1.5; }
 
     .closing {
-      font-family: 'DM Serif Display', Georgia, serif;
-      font-size: 1.15rem;
-      color: var(--ink);
-      text-align: center;
-      padding: 2rem 1.75rem;
-      border-top: 1px solid var(--rule);
-      font-style: italic;
+      font-family:'DM Serif Display',Georgia,serif;
+      font-size:1.1rem; color:var(--ink);
+      text-align:center; padding:1.75rem 1.5rem;
+      border-top:1px solid var(--rule);
+      font-style:italic;
     }
     .closing cite {
-      display: block;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-4);
-      margin-top: 0.6rem;
-      font-style: normal;
+      display:block; font-family:'Inter',sans-serif;
+      font-size:0.62rem; font-weight:700; letter-spacing:0.1em;
+      text-transform:uppercase; color:var(--ink4);
+      margin-top:0.5rem; font-style:normal;
     }
 
-    /* ─────────────────────────────────────────
-       FOOTER
-    ───────────────────────────────────────── */
+    /* ── GENERIC SECTION CHROME ── */
+    .sec { background:var(--white); border:1px solid var(--rule); margin-top:1.5rem; }
+    .sec-head { padding:1.1rem 1.5rem 0.9rem; border-bottom:1px solid var(--rule); display:flex; align-items:baseline; gap:1rem; }
+    .sec-lbl { font-size:0.58rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--acc); white-space:nowrap; }
+    .sec-ttl { font-size:0.94rem; font-weight:600; color:var(--ink); }
+    .sec-body { padding:1.4rem 1.5rem; }
+
+    /* ── FOOTER ── */
     .footer {
-      margin-top: 2rem;
-      padding: 1.25rem 0;
-      border-top: 2px solid var(--ink);
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 0.65rem;
-      color: var(--ink-5);
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      margin-top:2rem; padding:1.1rem 0;
+      border-top:2px solid var(--ink);
+      display:flex; justify-content:space-between; align-items:baseline;
+      font-size:0.63rem; color:var(--ink5); flex-wrap:wrap; gap:0.4rem;
     }
-    .footer strong { color: var(--ink); font-weight: 600; }
+    .footer strong { color:var(--ink); font-weight:600; }
 
-    /* ─────────────────────────────────────────
-       UTILITIES
-    ───────────────────────────────────────── */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--rule);
-      margin: 1.25rem 0;
-    }
-    .ruled-section { margin-top: 1.5rem; }
-    .ruled-head {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-4);
-      padding: 0 0 0.4rem;
-      border-bottom: 1px solid var(--rule);
-      margin-bottom: 0.85rem;
-    }
-
-    @media (max-width: 680px) {
-      .stat-strip { grid-template-columns: repeat(2, 1fr); }
-      .goals-grid { grid-template-columns: 1fr; }
-      .goal-col:first-child { border-right: none; border-bottom: 1px solid var(--rule); }
-      .gap-grid { grid-template-columns: 1fr; }
-      .gap-col { border-right: none; border-bottom: 1px solid var(--rule); }
-      .gap-col:last-child { border-bottom: none; }
-      .spotlight-grid { grid-template-columns: 1fr; }
-      .spotlight-col:first-child { border-right: none; border-bottom: 1px solid var(--rule); }
-      .leaders-grid { grid-template-columns: repeat(2, 1fr); }
-      .leader-cell:nth-child(3n) { border-right: 1px solid var(--rule); }
-      .leader-cell:nth-child(2n) { border-right: none; }
-      .values-grid { grid-template-columns: repeat(2, 1fr); }
-      .value-cell:nth-child(2n) { border-right: none; }
-      .decision-row { grid-template-columns: 1fr; gap: 0.5rem; }
-      .attach-row { grid-template-columns: 1fr; }
-      .attach-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+    @media(max-width:680px){
+      .strip,.act-stats{ grid-template-columns:repeat(2,1fr); }
+      .split,.goals,.gaps,.leaders,.vals{ grid-template-columns:1fr; }
+      .split-l{ border-right:none; border-bottom:1px solid var(--rule); }
+      .goal-col:first-child{ border-right:none; border-bottom:1px solid var(--rule); }
+      .gap-col,.val{ border-right:none; border-bottom:1px solid var(--rule); }
+      .ldr:nth-child(3n){ border-right:1px solid var(--rule); }
+      .dec-row{ grid-template-columns:1fr; gap:0.4rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════
-     MASTHEAD
-══════════════════════════════════════════ -->
+<div class="nav">
+  <span class="nav-logo">intuit</span>
+  <span class="nav-div">|</span>
+  <span class="nav-path">SMB Sales &nbsp;·&nbsp; Growth and Transformation &nbsp;·&nbsp; FY27 Q1 Readout &nbsp;·&nbsp; Internal use only</span>
+</div>
+
+<!-- ══ MASTHEAD ══ -->
 <div class="masthead">
   <div class="masthead-inner">
     <hr class="masthead-rule" />
-    <div class="masthead-meta">
-      <span class="masthead-org">Intuit · SMB Sales · Growth &amp; Transformation</span>
-      <span class="masthead-date">October 14, 2026 · W11 · Internal use only</span>
+    <div class="masthead-eyeline">
+      <span class="masthead-org">SMB Sales · Growth and Transformation</span>
+      <span class="masthead-date">October 14, 2026 · W11 · 3 weeks remaining</span>
     </div>
-    <h1 class="masthead-title">FY27 Q1<br><em>Readout</em></h1>
-    <p class="masthead-deck">
-      Prepared for <strong>Travis Walter's</strong> leadership team &nbsp;·&nbsp;
-      Owner: <strong>Chris Walker</strong> &nbsp;·&nbsp;
-      Q1 runs Aug 1 – Oct 31 &nbsp;·&nbsp; 3 weeks remaining
-    </p>
-
-    <div class="stat-strip">
-      <div class="stat-cell green">
-        <div class="stat-num">125<sup>ITF</sup></div>
-        <div class="stat-label">Sales $</div>
-        <div class="stat-sub">$131.5M vs $105.0M plan · incl. S2S</div>
+    <h1 class="masthead-hed">FY27 Q1<br><em>Readout</em></h1>
+    <p class="masthead-deck">Prepared for <strong>Travis Walter's</strong> leadership team &nbsp;·&nbsp; Owner: <strong>Chris Walker</strong></p>
+    <div class="strip">
+      <div class="strip-cell g">
+        <div class="snum">125<sup>ITF</sup></div>
+        <div class="slbl">Sales $</div>
+        <div class="ssub">$131.5M vs $105.0M plan · incl. S2S</div>
       </div>
-      <div class="stat-cell green">
-        <div class="stat-num">145<sup>ITF</sup></div>
-        <div class="stat-label">Advanced Units</div>
-        <div class="stat-sub">14,725 units QTD · 19,137 projected</div>
+      <div class="strip-cell g">
+        <div class="snum">145<sup>ITF</sup></div>
+        <div class="slbl">Advanced Units</div>
+        <div class="ssub">14,725 units QTD · 19,137 projected</div>
       </div>
-      <div class="stat-cell blue">
-        <div class="stat-num">115<sup>ITF</sup></div>
-        <div class="stat-label">EMM Sales $</div>
-        <div class="stat-sub">$17.7M QTD · $1.93M best week W11</div>
+      <div class="strip-cell b">
+        <div class="snum">115<sup>ITF</sup></div>
+        <div class="slbl">EMM Sales $</div>
+        <div class="ssub">$17.7M QTD · best week W11 $1.93M</div>
       </div>
-      <div class="stat-cell teal">
-        <div class="stat-num">175<sup>ITF</sup></div>
-        <div class="stat-label">Expert Assist</div>
-        <div class="stat-sub">1,615 GNS vs 922 forecast</div>
+      <div class="strip-cell t">
+        <div class="snum">175<sup>ITF</sup></div>
+        <div class="slbl">Expert Assist</div>
+        <div class="ssub">1,615 GNS vs 922 forecast</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     BODY
-══════════════════════════════════════════ -->
+<!-- ══ PAGE 1: SCORECARD ══ -->
 <div class="body">
 
-  <!-- ── EXECUTIVE SUMMARY ── -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-label">Executive summary</span>
-      <span class="section-title">The story in plain terms</span>
-    </div>
-    <div class="section-body">
-      <p class="lede">Advanced is carrying a 121 ITF quarter and attach proves it <em>compounds.</em> Three things stand between us and the $500M opportunity: payroll, Advanced pace, and Payments conversion.</p>
-
-      <p class="body-copy">We are moving the whole org from selling add-ons to selling QuickBooks as one platform. Reps start with the customer's problem, then show how payroll, payments and the books work together. Advanced is where that conversation starts — and customers are adding to it. Customers with 2+ Advanced features retain at 90%; payroll or accountant-attached customers cancel at 0.4–0.7× the peer rate.</p>
-
-      <div class="attach-row">
-        <div class="attach-cell">
-          <div class="attach-num">156</div>
-          <div class="attach-label"><strong>Advanced-attached Workforce</strong>ITF to target, quarter to date</div>
-        </div>
-        <div class="attach-cell">
-          <div class="attach-num">139</div>
-          <div class="attach-label"><strong>Advanced-attached Payments</strong>ITF to target, quarter to date</div>
-        </div>
-        <div class="attach-cell">
-          <div class="attach-num">169</div>
-          <div class="attach-label"><strong>Advanced-attached Bill Pay</strong>ITF to target, quarter to date</div>
-        </div>
-      </div>
-    </div>
+<div class="sheet">
+  <div class="sheet-topbar">
+    <span class="sheet-topbar-logo">intuit</span>
+    <span class="sheet-topbar-path">SMB Sales | Growth and Transformation</span>
+  </div>
+  <div class="sheet-hed">
+    <div class="sheet-h2">Q1 FY27 is tracking 121 ITF on Sales $, led by Advanced at 149 and EMM at 115</div>
+    <div class="sheet-sub">Scorecard through W11 · ITF = actual to forecast, 100 = plan</div>
   </div>
 
-  <!-- ── FY27 GOALS ── -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-label">FY27 Strategy</span>
-      <span class="section-title">Two motions, one team, one number</span>
-    </div>
-    <div class="section-body" style="padding:0;">
-      <div class="goals-grid">
-        <div class="goal-col">
-          <div class="goal-kicker">SMB · Core and high velocity</div>
-          <div class="goal-heading">Scaled and efficient</div>
-          <div class="goal-rows">
-            <div class="goal-row"><span class="gr-metric">QBO Advanced units</span><span class="gr-range">44.4K → 46K+</span><span class="gr-delta">+3%</span></div>
-            <div class="goal-row"><span class="gr-metric">Advanced conversion</span><span class="gr-range">4.9% → 6.2%</span><span class="gr-delta">+27%</span></div>
-            <div class="goal-row"><span class="gr-metric">Payroll attach</span><span class="gr-range">32% → 39%</span><span class="gr-delta">+7 pts</span></div>
-            <div class="goal-row"><span class="gr-metric">Payments attach</span><span class="gr-range">12.6% → 16.1%</span><span class="gr-delta">+3.5 pts</span></div>
-          </div>
-          <p class="goal-note">Comp now pays attach (80/20) as volume moves to value. Conversion carries the plan.</p>
-        </div>
-        <div class="goal-col">
-          <div class="goal-kicker">EMM · QBO Advanced</div>
-          <div class="goal-heading">Higher value and growing</div>
-          <div class="goal-rows">
-            <div class="goal-row"><span class="gr-metric">Advanced revenue</span><span class="gr-range">$118M → $133M</span><span class="gr-delta">+13%</span></div>
-            <div class="goal-row"><span class="gr-metric">EMM AE units</span><span class="gr-range">1.3K → 4.0K</span><span class="gr-delta">3×</span></div>
-            <div class="goal-row"><span class="gr-metric">Productivity per AE</span><span class="gr-range">$250K → $600K</span><span class="gr-delta">2.4×</span></div>
-            <div class="goal-row"><span class="gr-metric">Advanced units</span><span class="gr-range">7.4K → 8.9K</span><span class="gr-delta">+21%</span></div>
-          </div>
-          <p class="goal-note">Biggest shift: standing up an outbound hunter motion, growing from 21 to 40 sellers.</p>
-        </div>
-      </div>
-    </div>
+  <div style="overflow-x:auto;">
+    <table class="sc">
+      <thead><tr><th style="width:38%">Metric</th><th>Period</th><th>QTD actual vs plan</th><th>ITF</th></tr></thead>
+      <tbody>
+        <tr class="sc-grp"><td colspan="4">Sales &amp; Advanced</td></tr>
+        <tr><td class="sc-m">Sales $, excl. S2S</td><td class="sc-p">W11</td><td class="sc-a">+$15.5M over plan · $114.9M projected at close</td><td class="sc-n g">121</td></tr>
+        <tr><td class="sc-m">Advanced units</td><td class="sc-p">W11</td><td class="sc-a">10,520 vs 7,047 plan · 19,137 projected vs 12,990 forecast</td><td class="sc-n g">149</td></tr>
+        <tr class="sc-grp"><td colspan="4">Attach &amp; Services</td></tr>
+        <tr><td class="sc-m">Advanced-attached Workforce</td><td class="sc-p">W9</td><td class="sc-a">QTD vs TP4 target</td><td class="sc-n g">163</td></tr>
+        <tr><td class="sc-m">Advanced-attached Payments</td><td class="sc-p">W9</td><td class="sc-a">QTD vs TP4 target</td><td class="sc-n g">143</td></tr>
+        <tr><td class="sc-m">Advanced-attached Bill Pay</td><td class="sc-p">W9</td><td class="sc-a">QTD vs TP4 target</td><td class="sc-n g">173</td></tr>
+        <tr><td class="sc-m">Payments TPV</td><td class="sc-p">W11</td><td class="sc-a">$2.68M in week vs $2.14M forecast</td><td class="sc-n g">125</td></tr>
+        <tr><td class="sc-m">Payroll attach rate</td><td class="sc-p">W11</td><td class="sc-a">Sales carries 74% of enterprise payroll miss</td><td class="sc-n a">94</td></tr>
+        <tr><td class="sc-m">Workforce GNS, SMB Sales excl. S2S</td><td class="sc-p">W11</td><td class="sc-a">587 in week · 6,418 vs 7,756 last year through W10</td><td class="sc-n r">85</td></tr>
+        <tr><td class="sc-m">Payments GNA + resub</td><td class="sc-p">W11</td><td class="sc-a">96 vs 175 forecast</td><td class="sc-n r">55</td></tr>
+        <tr><td class="sc-m">Expert Assist GNS</td><td class="sc-p">W11</td><td class="sc-a">1,615 GNS vs 922 forecast · DIWM 176 · Assisted 165</td><td class="sc-n g">175</td></tr>
+        <tr class="sc-grp"><td colspan="4">EMM</td></tr>
+        <tr><td class="sc-m">EMM Sales $, W11</td><td class="sc-p">W11</td><td class="sc-a">$1.93M vs $1.34M forecast — best week of the quarter</td><td class="sc-n g">144</td></tr>
+        <tr><td class="sc-m">EMM Sales $, QTD</td><td class="sc-p">W11</td><td class="sc-a">$17.7M through W11</td><td class="sc-n g">115</td></tr>
+        <tr><td class="sc-m">EMM Advanced units</td><td class="sc-p">W11</td><td class="sc-a">232 units · IB 105% · OB 139% · AE 110% of aspiration</td><td class="sc-n g">117</td></tr>
+        <tr><td class="sc-m">EMM AE Workforce GNS</td><td class="sc-p">W11</td><td class="sc-a">Below aspiration five weeks running</td><td class="sc-n a">90</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <!-- ── SCORECARD ── -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-label">Scorecard</span>
-      <span class="section-title">Q1 FY27 through W11 · ITF = actual ÷ forecast × 100</span>
-    </div>
-    <!-- QTD chart -->
-    <div class="chart-svg-wrap">
-      <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-4);margin-bottom:0.75rem;">QTD ITF by week — Sales $ excl. S2S</div>
-      <svg viewBox="0 0 860 140" width="100%" height="100" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
-        <!-- grid lines -->
-        <line x1="0" y1="100" x2="860" y2="100" stroke="#EAECF2" stroke-width="1"/>
-        <line x1="0" y1="70"  x2="860" y2="70"  stroke="#EAECF2" stroke-width="1"/>
-        <line x1="0" y1="40"  x2="860" y2="40"  stroke="#EAECF2" stroke-width="1"/>
-        <line x1="0" y1="10"  x2="860" y2="10"  stroke="#EAECF2" stroke-width="1"/>
+  <!-- CHART LEFT / SPOTLIGHT RIGHT -->
+  <div class="split">
+    <div class="split-l">
+      <div class="split-kicker">QTD ITF by week</div>
+      <svg viewBox="0 0 380 160" width="100%" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
+        <!-- grid -->
+        <line x1="0" y1="130" x2="380" y2="130" stroke="#EAECF2" stroke-width="1"/>
+        <line x1="0" y1="105" x2="380" y2="105" stroke="#EAECF2" stroke-width="1"/>
+        <line x1="0" y1="80"  x2="380" y2="80"  stroke="#EAECF2" stroke-width="1"/>
+        <line x1="0" y1="55"  x2="380" y2="55"  stroke="#EAECF2" stroke-width="1"/>
+        <line x1="0" y1="30"  x2="380" y2="30"  stroke="#EAECF2" stroke-width="1"/>
         <!-- 100 baseline -->
-        <line x1="0" y1="85" x2="860" y2="85" stroke="#D4D9E4" stroke-width="1.5" stroke-dasharray="4 3"/>
-        <!-- labels -->
-        <text x="862" y="89" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">100</text>
-        <!-- Sales $ line (starts ~108, builds to 121) -->
+        <line x1="0" y1="108" x2="380" y2="108" stroke="#D4D9E4" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="382" y="112" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">100</text>
+        <!-- Sales $ line -->
         <polyline fill="none" stroke="#0455C2" stroke-width="2"
-          points="78,77  156,72  234,70  312,67  390,64  468,62  546,60  624,58  702,56  780,54  858,53"/>
-        <!-- Advanced line (higher, 149 ITF) -->
-        <polyline fill="none" stroke="#22C55E" stroke-width="2"
-          points="78,62  156,55  234,50  312,46  390,43  468,40  546,38  624,36  702,34  780,32  858,30"/>
-        <!-- week labels -->
-        <text x="78"  y="118" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W1</text>
-        <text x="156" y="118" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W2</text>
-        <text x="234" y="118" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W3</text>
-        <text x="312" y="118" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W4</text>
-        <text x="390" y="118" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W5</text>
-        <text x="468" y="118" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W6</text>
-        <text x="546" y="118" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W7</text>
-        <text x="624" y="118" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W8</text>
-        <text x="702" y="118" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W9</text>
-        <text x="780" y="118" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W10</text>
-        <text x="858" y="118" text-anchor="middle" font-size="8" fill="#333" font-family="Inter,sans-serif" font-weight="600">W11</text>
+          points="18,100 52,95 86,91 120,88 154,85 188,82 222,80 256,78 290,76 324,74 358,72"/>
+        <!-- Advanced line -->
+        <polyline fill="none" stroke="#0D6B3A" stroke-width="2"
+          points="18,84 52,77 86,72 120,66 154,61 188,56 222,52 256,48 290,44 324,40 358,36"/>
+        <!-- labels -->
+        <text x="18"  y="150" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W1</text>
+        <text x="86"  y="150" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W3</text>
+        <text x="154" y="150" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W5</text>
+        <text x="222" y="150" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W7</text>
+        <text x="290" y="150" text-anchor="middle" font-size="8" fill="#A0ABBE" font-family="Inter,sans-serif">W9</text>
+        <text x="358" y="150" text-anchor="middle" font-size="8" fill="#333" font-family="Inter,sans-serif" font-weight="600">W11</text>
         <!-- end labels -->
-        <text x="855" y="50" font-size="8" fill="#22C55E" font-family="Inter,sans-serif" font-weight="700" text-anchor="end">Adv 149</text>
-        <text x="855" y="62" font-size="8" fill="#0455C2" font-family="Inter,sans-serif" font-weight="700" text-anchor="end">Sales 121</text>
+        <text x="358" y="30" font-size="8" fill="#0D6B3A" font-family="Inter,sans-serif" font-weight="700" text-anchor="middle">Adv 149</text>
+        <text x="358" y="65" font-size="8" fill="#0455C2" font-family="Inter,sans-serif" font-weight="700" text-anchor="middle">Sales 121</text>
       </svg>
+      <p style="font-size:0.65rem;color:var(--ink5);margin-top:0.5rem;">Advanced pace has eased but still runs 49 points above plan; the last four weeks average 1,295 Advanced units per week against a 1,581 aspiration.</p>
     </div>
-    <div style="overflow-x:auto;">
-      <table class="sc-table">
-        <thead>
-          <tr>
-            <th style="width:38%">Metric</th>
-            <th>Period</th>
-            <th>QTD actual vs plan</th>
-            <th style="text-align:center;width:72px;">ITF</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="sc-group"><td colspan="4">Sales &amp; Advanced</td></tr>
-          <tr>
-            <td class="sc-metric">Sales $, excl. S2S</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">+$15.5M over plan · $114.9M projected at close</td>
-            <td class="sc-itf g"><span class="sc-bar g"></span>121</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">Advanced units</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">10,520 vs 7,047 plan · 19,137 projected vs 12,990 forecast</td>
-            <td class="sc-itf g"><span class="sc-bar g"></span>149</td>
-          </tr>
 
-          <tr class="sc-group"><td colspan="4">Attach &amp; Services</td></tr>
-          <tr>
-            <td class="sc-metric">Advanced-attached Workforce</td>
-            <td class="sc-period">W9</td>
-            <td class="sc-actual">QTD vs TP4 target</td>
-            <td class="sc-itf g"><span class="sc-bar g"></span>163</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">Advanced-attached Payments</td>
-            <td class="sc-period">W9</td>
-            <td class="sc-actual">QTD vs TP4 target</td>
-            <td class="sc-itf g"><span class="sc-bar g"></span>143</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">Advanced-attached Bill Pay</td>
-            <td class="sc-period">W9</td>
-            <td class="sc-actual">QTD vs TP4 target</td>
-            <td class="sc-itf g"><span class="sc-bar g"></span>173</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">Payments TPV</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">$2.68M in week vs $2.14M forecast</td>
-            <td class="sc-itf g"><span class="sc-bar g"></span>125</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">Payroll attach rate</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">Sales carries 74% of enterprise payroll miss</td>
-            <td class="sc-itf a"><span class="sc-bar a"></span>94</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">Workforce GNS, SMB Sales excl. S2S</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">587 in week · 6,418 vs 7,756 last year through W10</td>
-            <td class="sc-itf r"><span class="sc-bar r"></span>85</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">Payments GNA + resub</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">96 vs 175 forecast</td>
-            <td class="sc-itf r"><span class="sc-bar r"></span>55</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">Expert Assist GNS</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">1,615 GNS vs 922 forecast · DIWM 176 · Assisted 165</td>
-            <td class="sc-itf g"><span class="sc-bar g"></span>175</td>
-          </tr>
-
-          <tr class="sc-group"><td colspan="4">EMM</td></tr>
-          <tr>
-            <td class="sc-metric">EMM Sales $, W11</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">$1.93M vs $1.34M forecast — best week of the quarter</td>
-            <td class="sc-itf g"><span class="sc-bar g"></span>144</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">EMM Sales $, QTD</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">$17.7M through W11</td>
-            <td class="sc-itf g"><span class="sc-bar g"></span>115</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">EMM Advanced units</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">232 units · IB 105% · OB 139% · AE 110% of aspiration</td>
-            <td class="sc-itf g"><span class="sc-bar g"></span>117</td>
-          </tr>
-          <tr>
-            <td class="sc-metric">EMM AE Workforce GNS</td>
-            <td class="sc-period">W11</td>
-            <td class="sc-actual">Below aspiration five weeks running</td>
-            <td class="sc-itf a"><span class="sc-bar a"></span>90</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="sc-foot">
-      Scope is Inbound, Outbound, EMM and CDS; S2S excluded unless noted. W9 attach cut is latest published; W11 cut not yet available.
-      EMM Advanced is share of aspiration (61 IB · 57 OB · 81 AE), not ITF to forecast.
-    </div>
-  </div>
-
-  <!-- ── GAPS ── -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-label">Risk</span>
-      <span class="section-title">What is not moving</span>
-    </div>
-    <div class="section-body" style="padding:0;">
-      <div class="gap-grid">
-        <div class="gap-col">
-          <div class="gap-num">85 ITF</div>
-          <div class="gap-label">Payroll / Workforce GNS</div>
-          <div class="gap-body">SMB Sales is 6,418 units vs 7,756 last year through W10. Sales carries 74% of the enterprise miss. Moving 1,406 existing-customer units to S2S explains the Sales drop but not the enterprise shortfall. Advanced displaced the Core + Payroll bundle (1,933 units → 301).<br><br>Q2 trajectory: 8.3K at current run rate · 9.4K with committed moves · 9.8K ceiling. Needs 10.4K.</div>
-        </div>
-        <div class="gap-col">
-          <div class="gap-num">55 ITF</div>
-          <div class="gap-label">Payments GNA</div>
-          <div class="gap-body">GNA is 55 ITF while TPV is 125 ITF — fewer accounts carrying more volume. Lead pass conversion is 2.7% (EMM AE) to 5.4% (EMM IB and OB). New lead pass process is pending finalization.</div>
-        </div>
-        <div class="gap-col">
-          <div class="gap-num">90 ITF</div>
-          <div class="gap-label">EMM AE Workforce GNS</div>
-          <div class="gap-body">AE Advanced rebounded to 89 units vs 81 aspiration in W11 (110%) — biggest week yet for HVS. But Workforce GNS has lagged five consecutive weeks. The offsite cost ~22 AV units ($74K).</div>
-        </div>
+    <div class="split-r">
+      <div class="split-kicker">Field spotlight: EMM and Maddie Crosby</div>
+      <img src="maddie.png" alt="Madeline Crosby at the QuickBooks Advanced trade show, Charlotte" class="sp-img" />
+      <p class="sp-body">Madeline Crosby took EMM to its first QuickBooks Advanced trade show in Charlotte on Oct 13, with about 4,000 construction companies in the room. Our sellers spent the day with customers face to face. Maddie also built the EMM Advanced events calendar with Michelle Odell's team and is lining up demo-capable sellers for every show.</p>
+      <div class="sp-stats">
+        <div><div class="sp-sn">619%</div><div class="sp-sl">EMM Advanced ITF, QTD</div></div>
+        <div><div class="sp-sn">+232%</div><div class="sp-sl">Advanced GNS vs last year</div></div>
       </div>
     </div>
   </div>
 
-  <!-- ── PEOPLE ── -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-label">People</span>
-      <span class="section-title">The people behind the numbers</span>
-    </div>
-    <div class="section-body" style="padding:0;">
-      <div class="spotlight-grid">
+  <div class="sc-foot">
+    Scope is Inbound, Outbound, EMM and CDS; S2S excluded unless noted. W9 attach cut is latest published.
+    EMM Advanced is share of aspiration (61 IB · 57 OB · 81 AE), not ITF to forecast.
+    Intuit | SMB and EMM | FY27 Q1 Scorecard | October 14, 2026 | Internal use only
+  </div>
+</div>
 
-        <div class="spotlight-col">
-          <img src="maddie.png" alt="Madeline Crosby at the QuickBooks Advanced trade show, Charlotte, Oct 13" style="width:100%;display:block;margin-bottom:1.25rem;border:1px solid var(--rule);" />
-          <div class="sp-name">Madeline Crosby</div>
-          <div class="sp-role">EMM Inbound and Outbound</div>
-          <p class="sp-body">EMM posted the highest Advanced ITF of any team this quarter and has been the most consistent driver of a quarter running well ahead of forecast. Maddie took EMM to its first QuickBooks Advanced trade show in Charlotte on Oct 13 — 4,000 construction companies in the room. She built the EMM Advanced events calendar with Michelle Odell's team and is lining up demo-capable sellers for every show. She is now turning win/loss data by job type into specific improvement targets for each manager.</p>
-          <div class="sp-stats">
-            <div>
-              <div class="sp-stat-num">619%</div>
-              <div class="sp-stat-label">EMM Advanced ITF, QTD</div>
-            </div>
-            <div>
-              <div class="sp-stat-num">+232%</div>
-              <div class="sp-stat-label">Advanced GNS vs last year</div>
-            </div>
-            <div>
-              <div class="sp-stat-num">253%</div>
-              <div class="sp-stat-label">Advanced ITF, all teams</div>
-            </div>
-          </div>
-        </div>
+<!-- ══ PAGE 2: PLATFORM ACTIVATION ══ -->
+<div class="act-sheet">
+  <div class="act-topbar">
+    <span class="act-topbar-logo">intuit</span>
+    <span class="act-topbar-path">SMB Sales | Growth and Transformation</span>
+  </div>
+  <div class="act-hed">
+    <div class="act-h2">The people behind the numbers: Built for More in Mountain View</div>
+    <div class="act-sub">SMB and EMM Platform Activation onsite | Sept 29 to Oct 1</div>
+  </div>
+  <img src="activation.png" alt="SMB and EMM sellers, leaders and partners at Platform Activation, Mountain View" class="act-photo" />
+  <div class="act-caption">SMB and EMM sellers, leaders and partners at Platform Activation, Mountain View.</div>
+  <div class="act-stats">
+    <div class="act-stat"><div class="act-sn">1.5 days</div><div class="act-sl">of hands-on platform practice</div></div>
+    <div class="act-stat"><div class="act-sn">20 years</div><div class="act-sl">before one seller's first visit to HQ</div></div>
+    <div class="act-stat"><div class="act-sn">37</div><div class="act-sl">EMM AEs in the room</div></div>
+    <div class="act-stat"><div class="act-sn">144 ITF</div><div class="act-sl">EMM's best week of Q1, the week after</div></div>
+  </div>
+  <div class="act-body">
+    <p class="act-p">In the last week of September we put sellers, leaders and partners in one room in Mountain View for SMB and EMM Platform Activation, our Built for More onsite. We skipped the slides. We spent a day and a half practicing: live objection handling, platform pitches, and a pitch-off with finalists on the last day.</p>
+    <p class="act-p">The people stories are the ones that stuck. One seller visited HQ for the first time in 20 years. Another met a colleague of more than ten years in person for the first time. Several took their first work trip ever.</p>
+    <p class="act-p">The numbers followed. The week after we got back, EMM posted its best week of Q1: $1.93M against a $1.34M forecast, 144 ITF, with Inbound, Outbound and AE all over aspiration together for the first time this quarter.</p>
+    <p class="act-p">Thank you to <strong>Whitney Sieck</strong>, who ran the event soup to nuts, and to Milka Akinloye-Grimm and Kim Amundson for the big and little things.</p>
+  </div>
+</div>
 
-        <div class="spotlight-col">
-          <img src="activation.png" alt="SMB and EMM sellers, leaders and partners at Platform Activation, Mountain View, Sept 29–Oct 1" style="width:100%;display:block;margin-bottom:1.25rem;border:1px solid var(--rule);" />
-          <div class="sp-name">Built for More</div>
-          <div class="sp-role">Platform Activation Onsite · Sept 29 – Oct 1</div>
-          <p class="sp-body">We put sellers, leaders and partners in one room at Mountain View and skipped the slides. A day and a half of live objection handling, platform pitches, and a pitch-off with finalists on the last day.</p>
-          <p class="sp-body">The human moments are the ones that stick. One seller visited HQ for the first time in 20 years. Another met a colleague of 10+ years in person for the first time. Several took their first work trip ever.</p>
-          <p class="sp-body">The numbers followed. The week after: EMM's best week of Q1 — $1.93M vs $1.34M forecast, 144 ITF, with IB, OB and AE all over aspiration together for the first time this quarter. Thank you to <strong>Whitney Sieck</strong>, Milka Akinloye-Grimm, and Kim Amundson.</p>
-          <div class="sp-stats">
-            <div>
-              <div class="sp-stat-num">37</div>
-              <div class="sp-stat-label">EMM AEs in the room</div>
-            </div>
-            <div>
-              <div class="sp-stat-num">1.5 days</div>
-              <div class="sp-stat-label">Hands-on platform practice</div>
-            </div>
-            <div>
-              <div class="sp-stat-num">144 ITF</div>
-              <div class="sp-stat-label">EMM the week after</div>
-            </div>
-          </div>
-        </div>
-
+<!-- ══ STRATEGY ══ -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-lbl">FY27 Strategy</span><span class="sec-ttl">Two motions, one team, one number</span></div>
+  <div class="sec-body" style="padding:0;">
+    <div class="goals">
+      <div class="goal-col">
+        <div class="goal-kicker">SMB · Core and high velocity</div>
+        <div class="goal-h">Scaled and efficient</div>
+        <div class="gr"><span class="gr-m">QBO Advanced units</span><span class="gr-r">44.4K → 46K+</span><span class="gr-d">+3%</span></div>
+        <div class="gr"><span class="gr-m">Advanced conversion</span><span class="gr-r">4.9% → 6.2%</span><span class="gr-d">+27%</span></div>
+        <div class="gr"><span class="gr-m">Payroll attach</span><span class="gr-r">32% → 39%</span><span class="gr-d">+7 pts</span></div>
+        <div class="gr"><span class="gr-m">Payments attach</span><span class="gr-r">12.6% → 16.1%</span><span class="gr-d">+3.5 pts</span></div>
+        <p class="goal-note">Comp now pays attach (80/20) as volume moves to value. Conversion carries the plan.</p>
+      </div>
+      <div class="goal-col">
+        <div class="goal-kicker">EMM · QBO Advanced</div>
+        <div class="goal-h">Higher value and growing</div>
+        <div class="gr"><span class="gr-m">Advanced revenue</span><span class="gr-r">$118M → $133M</span><span class="gr-d">+13%</span></div>
+        <div class="gr"><span class="gr-m">EMM AE units</span><span class="gr-r">1.3K → 4.0K</span><span class="gr-d">3×</span></div>
+        <div class="gr"><span class="gr-m">Productivity per AE</span><span class="gr-r">$250K → $600K</span><span class="gr-d">2.4×</span></div>
+        <div class="gr"><span class="gr-m">Advanced units</span><span class="gr-r">7.4K → 8.9K</span><span class="gr-d">+21%</span></div>
+        <p class="goal-note">Biggest shift: standing up an outbound hunter motion, growing from 21 to 40 sellers.</p>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ── LEADERS ── -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-label">Team</span>
-      <span class="section-title">Leaders of our seven sales engines</span>
-    </div>
-    <div class="section-body" style="padding:0;">
-      <div class="leaders-grid">
-        <div class="leader-cell">
-          <img src="chris-irwin.png" alt="Chris Irwin" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center top;margin-bottom:0.65rem;display:block;" />
-          <div class="leader-name">Chris Irwin</div>
-          <div class="leader-role">IB Phone</div>
-          <div class="leader-desc">Leads core SMB inbound and the push toward new-to-QuickBooks and existing customers.</div>
-        </div>
-        <div class="leader-cell">
-          <img src="whitney-lawson.png" alt="Whitney Lawson" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center top;margin-bottom:0.65rem;display:block;" />
-          <div class="leader-name">Whitney Lawson</div>
-          <div class="leader-role">Core Outbound</div>
-          <div class="leader-desc">Partnering with enablement to lift Advanced conversion across the outbound motion.</div>
-        </div>
-        <div class="leader-cell">
-          <img src="anthony-salorio.png" alt="Anthony Salorio" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center top;margin-bottom:0.65rem;display:block;" />
-          <div class="leader-name">Anthony Salorio</div>
-          <div class="leader-role">IB Chat</div>
-          <div class="leader-desc">Bringing stalled Advanced opportunities back with SMS Reignite.</div>
-        </div>
-        <div class="leader-cell">
-          <img src="john-lohmeier.png" alt="John Lohmeier" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center top;margin-bottom:0.65rem;display:block;" />
-          <div class="leader-name">John Lohmeier</div>
-          <div class="leader-role">CDS + S2S / Care</div>
-          <div class="leader-desc">Leads our largest engine. Growing the payroll pod from 9 to 19 sellers before Jan 1.</div>
-        </div>
-        <div class="leader-cell">
-          <img src="steven-kish.png" alt="Steven Kish" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center top;margin-bottom:0.65rem;display:block;" />
-          <div class="leader-name">Steven Kish</div>
-          <div class="leader-role">EMM AE</div>
-          <div class="leader-desc">Leads the full-cycle hunters. HVS team had its biggest Advanced week yet in W11.</div>
-        </div>
-        <div class="leader-cell">
-          <img src="dan-buckingham.png" alt="Dan Buckingham" style="width:36px;height:36px;border-radius:50%;object-fit:cover;object-position:center top;margin-bottom:0.65rem;display:block;" />
-          <div class="leader-name">Dan Buckingham</div>
-          <div class="leader-role">EMM Outbound and AE</div>
-          <div class="leader-desc">Filling five open OB seats and running the Workforce Upgrade Playbook.</div>
-        </div>
+<!-- ══ GAPS ══ -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-lbl">Risk</span><span class="sec-ttl">What is not moving</span></div>
+  <div class="sec-body" style="padding:0;">
+    <div class="gaps">
+      <div class="gap-col">
+        <div class="gap-n">85 ITF</div>
+        <div class="gap-lbl">Payroll / Workforce GNS</div>
+        <div class="gap-body">SMB Sales is 6,418 units vs 7,756 last year through W10. Sales carries 74% of the enterprise miss. Moving 1,406 existing-customer units to S2S explains the Sales drop but not the enterprise shortfall. Advanced displaced the Core + Payroll bundle (1,933 units → 301).<br><br>Q2: 8.3K at run rate · 9.4K with committed moves · 9.8K ceiling · needs 10.4K.</div>
+      </div>
+      <div class="gap-col">
+        <div class="gap-n">55 ITF</div>
+        <div class="gap-lbl">Payments GNA</div>
+        <div class="gap-body">GNA is 55 ITF while TPV is 125 ITF — fewer accounts carrying more volume. Lead pass conversion is 2.7% (EMM AE) to 5.4% (EMM IB and OB). New lead pass process pending finalization.</div>
+      </div>
+      <div class="gap-col">
+        <div class="gap-n">90 ITF</div>
+        <div class="gap-lbl">EMM AE Workforce GNS</div>
+        <div class="gap-body">AE Advanced rebounded to 89 units vs 81 aspiration in W11 (110%) — biggest week yet for HVS. But Workforce GNS has lagged five consecutive weeks. The offsite cost ~22 AV units ($74K).</div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ── COMMITMENTS ── -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-label">Q2 Actions</span>
-      <span class="section-title">What is committed, what is brainstorm, and where we want your input</span>
-    </div>
-    <div class="section-body">
-
-      <div class="ruled-section">
-        <div class="ruled-head">Committed — Q2 owners and dates</div>
-        <table class="commit-table">
-          <thead><tr><th>Commitment</th><th>Owner</th><th>Due</th></tr></thead>
-          <tbody>
-            <tr>
-              <td class="cm-item">Grow the CDS payroll pod from 9 to 19 sellers (+481 units)</td>
-              <td class="cm-owner">John Lohmeier</td>
-              <td class="cm-due">Before Jan 1</td>
-            </tr>
-            <tr>
-              <td class="cm-item">Fill five open EMM OB seats (+140) and run the Workforce Upgrade Playbook in EMM AE, 7–15 per week</td>
-              <td class="cm-owner">Dan Buckingham</td>
-              <td class="cm-due">Q2</td>
-            </tr>
-            <tr>
-              <td class="cm-item">Launch switcher offer and campaigns ahead of the Dec 1 Desktop Payroll price increase (+182)</td>
-              <td class="cm-owner">Marketing, Pricing</td>
-              <td class="cm-due">Nov 30</td>
-            </tr>
-            <tr>
-              <td class="cm-item">Finalize the lead pass process, then run road shows</td>
-              <td class="cm-owner">Kinjal Icecreamwala</td>
-              <td class="cm-due">Q2</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="brainstorm">
-        <div class="bs-head">Brainstorm — not yet committed</div>
-        <ul class="bs-list">
-          <li>Coach reps to stay in the payroll conversation after a competitor mention. Inbound CDS and EMM drop it ~45% of the time — 3× the rate of other channels.</li>
-          <li>Move CDS from pitching every customer to pitching every resolved contact.</li>
-        </ul>
-      </div>
-
-      <div class="decisions">
-        <div class="decisions-head">Where we want your input before we commit · Working session Oct 28</div>
-        <div class="decision-row">
-          <div class="dr-q">How payroll units are credited across SMB Sales, CDS and S2S</div>
-          <div class="dr-h">One credit rule that sends CDS about 100 existing-customer payroll sales a week (+105)</div>
-          <div class="dr-meta"><strong>Travis Walter, Customer Success, Finance</strong><span class="dr-date">Oct 28</span></div>
-        </div>
-        <div class="decision-row">
-          <div class="dr-q">What Sales is forecast against for QBO and payroll</div>
-          <div class="dr-h">One QBO and payroll forecast; today Sales reads 69 ITF on QBO volume against the payroll forecast</div>
-          <div class="dr-meta"><strong>Finance, Travis Walter</strong><span class="dr-date">Oct 28</span></div>
-        </div>
-        <div class="decision-row">
-          <div class="dr-q">How payroll demand returns to IB Phone and Outbound</div>
-          <div class="dr-h">Fix payroll routing and the IVA (+486) and add payroll-fit Outbound leads (+309)</div>
-          <div class="dr-meta"><strong>Marketing, IVA owners</strong><span class="dr-date">Oct 28</span></div>
-        </div>
-      </div>
-
+<!-- ══ LEADERS ══ -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-lbl">Who you should know</span><span class="sec-ttl">Leaders of our seven sales engines</span></div>
+  <div class="sec-body" style="padding:0;">
+    <div class="leaders">
+      <div class="ldr"><img src="chris-irwin.png" alt="Chris Irwin" class="ldr-av"/><div class="ldr-name">Chris Irwin</div><div class="ldr-role">IB Phone</div><div class="ldr-desc">Leads core SMB inbound and the push toward new-to-QuickBooks and existing customers.</div></div>
+      <div class="ldr"><img src="whitney-lawson.png" alt="Whitney Lawson" class="ldr-av"/><div class="ldr-name">Whitney Lawson</div><div class="ldr-role">Core Outbound</div><div class="ldr-desc">Partnering with enablement to lift Advanced conversion across the outbound motion.</div></div>
+      <div class="ldr"><img src="anthony-salorio.png" alt="Anthony Salorio" class="ldr-av"/><div class="ldr-name">Anthony Salorio</div><div class="ldr-role">IB Chat</div><div class="ldr-desc">Bringing stalled Advanced opportunities back with SMS Reignite.</div></div>
+      <div class="ldr"><img src="john-lohmeier.png" alt="John Lohmeier" class="ldr-av"/><div class="ldr-name">John Lohmeier</div><div class="ldr-role">CDS + S2S / Care</div><div class="ldr-desc">Leads our largest engine. Growing the payroll pod from 9 to 19 sellers before Jan 1.</div></div>
+      <div class="ldr"><img src="steven-kish.png" alt="Steven Kish" class="ldr-av"/><div class="ldr-name">Steven Kish</div><div class="ldr-role">EMM AE</div><div class="ldr-desc">Leads the full-cycle hunters. HVS team had its biggest Advanced week yet in W11.</div></div>
+      <div class="ldr"><img src="dan-buckingham.png" alt="Dan Buckingham" class="ldr-av"/><div class="ldr-name">Dan Buckingham</div><div class="ldr-role">EMM Outbound and AE</div><div class="ldr-desc">Filling five open OB seats and running the Workforce Upgrade Playbook.</div></div>
     </div>
   </div>
+</div>
 
-  <!-- ── VALUES ── -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-label">Culture</span>
-      <span class="section-title">What we value, and how it shows up</span>
+<!-- ══ COMMITMENTS ══ -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-lbl">Q2 Actions</span><span class="sec-ttl">Four commitments are owned and dated; three decisions need your input first</span></div>
+  <div class="sec-body">
+    <table class="ct">
+      <thead><tr><th>Commitment</th><th>Owner</th><th>Due</th></tr></thead>
+      <tbody>
+        <tr><td>Grow the CDS payroll pod from 9 to 19 sellers (+481 units)</td><td class="ct-own">John Lohmeier</td><td class="ct-due">Before Jan 1</td></tr>
+        <tr><td>Fill five open EMM OB seats (+140) and run the Workforce Upgrade Playbook in EMM AE, 7–15 per week</td><td class="ct-own">Dan Buckingham</td><td class="ct-due">Q2</td></tr>
+        <tr><td>Launch switcher offer and campaigns ahead of the Dec 1 Desktop Payroll price increase (+182)</td><td class="ct-own">Marketing, Pricing</td><td class="ct-due">Nov 30</td></tr>
+        <tr><td>Finalize the lead pass process, then run road shows</td><td class="ct-own">Kinjal Icecreamwala</td><td class="ct-due">Q2</td></tr>
+      </tbody>
+    </table>
+    <div class="bs">
+      <div class="bs-h">Brainstorm — not yet committed</div>
+      <ul>
+        <li>Coach reps to stay in the payroll conversation after a competitor mention. Inbound CDS and EMM drop it ~45% of the time — 3× the rate of other channels.</li>
+        <li>Move CDS from pitching every customer to pitching every resolved contact.</li>
+      </ul>
     </div>
-    <div class="section-body" style="padding:0;">
-      <div class="values-grid">
-        <div class="value-cell"><div class="value-name">Platform first</div><div class="value-desc">Lead with the whole platform and the customer's problem, then bring in every product they need.</div></div>
-        <div class="value-cell"><div class="value-name">Own your number</div><div class="value-desc">Every engine owns its target, its bets and its results.</div></div>
-        <div class="value-cell"><div class="value-name">Bring the blocker</div><div class="value-desc">Leaders share what is stuck as readily as what is working.</div></div>
-        <div class="value-cell"><div class="value-name">Sell to the need</div><div class="value-desc">Discovery over pressure. We lead with the customer's problem.</div></div>
-        <div class="value-cell"><div class="value-name">One team</div><div class="value-desc">SMB and EMM engines share one message and cheer each other on.</div></div>
+    <div class="dec">
+      <div class="dec-h">Where we want your input before we commit · Working session Oct 28</div>
+      <div class="dec-row">
+        <div class="dec-q">How payroll units are credited across SMB Sales, CDS and S2S</div>
+        <div class="dec-h2">One credit rule that sends CDS about 100 existing-customer payroll sales a week (+105)</div>
+        <div class="dec-m"><strong>Travis Walter, Customer Success, Finance</strong><span class="dec-date">Oct 28</span></div>
       </div>
-      <div class="closing">
-        We already found the engine. Now we scale it, engine by engine.
-        <cite>Melissa Steffen · VP, QBO SMB Sales</cite>
+      <div class="dec-row">
+        <div class="dec-q">What Sales is forecast against for QBO and payroll</div>
+        <div class="dec-h2">One QBO and payroll forecast; today Sales reads 69 ITF on QBO volume against the payroll forecast</div>
+        <div class="dec-m"><strong>Finance, Travis Walter</strong><span class="dec-date">Oct 28</span></div>
+      </div>
+      <div class="dec-row">
+        <div class="dec-q">How payroll demand returns to IB Phone and Outbound</div>
+        <div class="dec-h2">Fix payroll routing and the IVA (+486) and add payroll-fit Outbound leads (+309)</div>
+        <div class="dec-m"><strong>Marketing, IVA owners</strong><span class="dec-date">Oct 28</span></div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="footer">
-    <span><strong>Intuit · SMB and EMM · FY27 Q1 Scorecard</strong> · October 14, 2026 · Internal use only</span>
-    <span>Owner: Chris Walker, Growth and Transformation · Prepared for Travis Walter's leadership team</span>
+<!-- ══ VALUES ══ -->
+<div class="sec">
+  <div class="sec-head"><span class="sec-lbl">Culture</span><span class="sec-ttl">What we value, and how it shows up</span></div>
+  <div class="sec-body" style="padding:0;">
+    <div class="vals">
+      <div class="val"><div class="val-n">Platform first</div><div class="val-d">Lead with the whole platform and the customer's problem, then bring in every product they need.</div></div>
+      <div class="val"><div class="val-n">Own your number</div><div class="val-d">Every engine owns its target, its bets and its results.</div></div>
+      <div class="val"><div class="val-n">Bring the blocker</div><div class="val-d">Leaders share what is stuck as readily as what is working.</div></div>
+      <div class="val"><div class="val-n">Sell to the need</div><div class="val-d">Discovery over pressure. We lead with the customer's problem.</div></div>
+      <div class="val"><div class="val-n">One team</div><div class="val-d">SMB and EMM engines share one message and cheer each other on.</div></div>
+    </div>
+    <div class="closing">
+      We already found the engine. Now we scale it, engine by engine.
+      <cite>Melissa Steffen · VP, QBO SMB Sales</cite>
+    </div>
   </div>
+</div>
+
+<div class="footer">
+  <span><strong>Intuit · SMB and EMM · FY27 Q1 Scorecard</strong> · October 14, 2026 · Internal use only</span>
+  <span>Owner: Chris Walker, Growth and Transformation · Prepared for Travis Walter's leadership team</span>
+</div>
 
 </div><!-- /.body -->
 </body>
