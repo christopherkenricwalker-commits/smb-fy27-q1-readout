@@ -481,6 +481,25 @@
               cursor:pointer; transition:background .3s,transform .3s }
     .cs-dot.on { background:#fff; transform:scale(1.4) }
 
+  
+    /* ─── SUPER COMPACT SCORECARD ─── */
+    .sc { font-size: .85rem }
+    .sc thead th { padding: .45rem 1rem; font-size: .58rem; background: #F8F9FB }
+    .sc td { padding: .36rem .9rem; line-height: 1.3 }
+    .sc-grp td { padding: .22rem 1rem; font-size: .56rem; background: #FAFBFD }
+    .sc-m { font-weight: 500; color: #28354A; font-size: .85rem }
+    .sc-p { color: #A4B2C4; font-size: .75rem }
+    .itf-pill { font-size: .78rem !important; padding: .14rem .52rem !important; border-radius: 6px }
+    .bw { padding: 0 }
+    .bl { font-size: .68rem; width: 240px }
+    /* zebra stripe for easy scanning */
+    .sc tbody tr:nth-child(even) { background: #FAFBFD }
+    .sc tbody tr:hover { background: #F0F4FF }
+    /* card headline tighter */
+    .card-hed { padding: 1.4rem 1.4rem .9rem }
+    .card-h2 { font-size: clamp(1.1rem, 2vw, 1.4rem) !important }
+    .sc-foot { padding: .6rem 1.4rem; font-size: .62rem }
+
   </style>
 </head>
 <body>
@@ -549,6 +568,36 @@
 </div>
 
 <!-- SCORECARD -->
+<div class="activation reveal">
+  <div class="act-img-wrap" id="actCarousel">
+    <div class="cs on" style="background-image:url('ev1.png')"></div>
+    <div class="cs"    style="background-image:url('ev2.png')"></div>
+    <div class="cs"    style="background-image:url('ev3.png')"></div>
+    <div class="cs"    style="background-image:url('ev4.jpg')"></div>
+    <div class="cs"    style="background-image:url('ev5.png')"></div>
+
+    <img src="activation.png" alt="Platform Activation group photo, Mountain View" class="act-photo" id="actPhoto"/>
+    <div class="act-overlay"></div>
+    <div class="act-overlay-text">
+      <div class="act-ey">People · Built for More · Mountain View</div>
+      <div class="act-h2">The people behind the numbers: Built for More in Mountain View</div>
+      <div class="act-dateline">SMB and EMM Platform Activation onsite · Sept 29 to Oct 1</div>
+    </div>
+      <div class="cs-dots" id="csDots"></div>
+</div>
+  <div class="act-bar">
+    <div class="an"><div class="an-num">1.5 days</div><div class="an-lbl">hands-on platform practice</div></div>
+    <div class="an"><div class="an-num">20 years</div><div class="an-lbl">before one seller's first visit to HQ</div></div>
+    <div class="an"><div class="an-num" data-count="37">0</div><div class="an-lbl">EMM AEs in the room</div></div>
+    <div class="an"><div class="an-num">144 ITF</div><div class="an-lbl">EMM the week after</div></div>
+  </div>
+  <div class="act-body">
+    <div><p class="act-p">In the last week of September we put sellers, leaders and partners in one room in Mountain View. We skipped the slides. A day and a half of live objection handling, platform pitches, and a pitch-off with finalists on the last day.</p><p class="act-p">The people stories are the ones that stuck. One seller visited HQ for the first time in 20 years. Another met a colleague of 10+ years in person for the first time. Several took their first work trip ever.</p></div>
+    <div><p class="act-p">The numbers followed. The week after: EMM's best week of Q1 — $1.93M against a $1.34M forecast, 144 ITF, with IB, OB and AE all over aspiration together for the first time.</p><p class="act-p">Thank you to <strong>Whitney Sieck</strong>, who ran the event soup to nuts, and to Milka Akinloye-Grimm and Kim Amundson.</p></div>
+  </div>
+</div>
+
+<!-- STRATEGY -->
 <div class="card reveal">
   <div class="ctb"><span class="ctb-logo">intuit</span><span class="ctb-sep">|</span><span class="ctb-path">SMB Sales | Growth and Transformation</span></div>
   <div class="card-hed">
@@ -745,36 +794,6 @@
 </div>
 
 <!-- ACTIVATION -->
-<div class="activation reveal">
-  <div class="act-img-wrap" id="actCarousel">
-    <div class="cs on" style="background-image:url('ev1.png')"></div>
-    <div class="cs"    style="background-image:url('ev2.png')"></div>
-    <div class="cs"    style="background-image:url('ev3.png')"></div>
-    <div class="cs"    style="background-image:url('ev4.jpg')"></div>
-    <div class="cs"    style="background-image:url('ev5.png')"></div>
-
-    <img src="activation.png" alt="Platform Activation group photo, Mountain View" class="act-photo" id="actPhoto"/>
-    <div class="act-overlay"></div>
-    <div class="act-overlay-text">
-      <div class="act-ey">People · Built for More · Mountain View</div>
-      <div class="act-h2">The people behind the numbers: Built for More in Mountain View</div>
-      <div class="act-dateline">SMB and EMM Platform Activation onsite · Sept 29 to Oct 1</div>
-    </div>
-      <div class="cs-dots" id="csDots"></div>
-</div>
-  <div class="act-bar">
-    <div class="an"><div class="an-num">1.5 days</div><div class="an-lbl">hands-on platform practice</div></div>
-    <div class="an"><div class="an-num">20 years</div><div class="an-lbl">before one seller's first visit to HQ</div></div>
-    <div class="an"><div class="an-num" data-count="37">0</div><div class="an-lbl">EMM AEs in the room</div></div>
-    <div class="an"><div class="an-num">144 ITF</div><div class="an-lbl">EMM the week after</div></div>
-  </div>
-  <div class="act-body">
-    <div><p class="act-p">In the last week of September we put sellers, leaders and partners in one room in Mountain View. We skipped the slides. A day and a half of live objection handling, platform pitches, and a pitch-off with finalists on the last day.</p><p class="act-p">The people stories are the ones that stuck. One seller visited HQ for the first time in 20 years. Another met a colleague of 10+ years in person for the first time. Several took their first work trip ever.</p></div>
-    <div><p class="act-p">The numbers followed. The week after: EMM's best week of Q1 — $1.93M against a $1.34M forecast, 144 ITF, with IB, OB and AE all over aspiration together for the first time.</p><p class="act-p">Thank you to <strong>Whitney Sieck</strong>, who ran the event soup to nuts, and to Milka Akinloye-Grimm and Kim Amundson.</p></div>
-  </div>
-</div>
-
-<!-- STRATEGY -->
 <div class="sec reveal"><div class="sec-head"><div class="sec-lbl">FY27 Strategy</div><div class="sec-ttl">Two motions, one team, one number</div></div><div class="sec-body" style="padding:0"><div class="goals"><div class="gc"><div class="gc-kicker">SMB · Core and high velocity</div><div class="gc-h">Scaled and efficient</div><div class="gr"><span class="gr-m">QBO Advanced units</span><span class="gr-r">44.4K → 46K+</span><span class="gr-d">+3%</span></div><div class="gr"><span class="gr-m">Advanced conversion</span><span class="gr-r">4.9% → 6.2%</span><span class="gr-d">+27%</span></div><div class="gr"><span class="gr-m">Payroll attach</span><span class="gr-r">32% → 39%</span><span class="gr-d">+7 pts</span></div><div class="gr"><span class="gr-m">Payments attach</span><span class="gr-r">12.6% → 16.1%</span><span class="gr-d">+3.5 pts</span></div><p class="gc-note">Comp now pays attach (80/20). Conversion carries the plan.</p></div><div class="gc"><div class="gc-kicker">EMM · QBO Advanced</div><div class="gc-h">Higher value and growing</div><div class="gr"><span class="gr-m">Advanced revenue</span><span class="gr-r">$118M → $133M</span><span class="gr-d">+13%</span></div><div class="gr"><span class="gr-m">EMM AE units</span><span class="gr-r">1.3K → 4.0K</span><span class="gr-d">3×</span></div><div class="gr"><span class="gr-m">Productivity per AE</span><span class="gr-r">$250K → $600K</span><span class="gr-d">2.4×</span></div><div class="gr"><span class="gr-m">Advanced units</span><span class="gr-r">7.4K → 8.9K</span><span class="gr-d">+21%</span></div><p class="gc-note">Biggest shift: standing up an outbound hunter motion, growing from 21 to 40 sellers.</p></div></div></div></div>
 
 <!-- GAPS -->
