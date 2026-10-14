@@ -17,7 +17,7 @@
       --t1:#080F1E;--t2:#28354A;--t3:#48586E;--t4:#768496;--t5:#A4B2C4;
     }
     html{font-size:16px;scroll-behavior:smooth}
-    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--off);color:var(--t1);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#F4F7FC;color:var(--t1);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
     /* ─── KEYFRAMES ─── */
     @keyframes orbA{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,-40px) scale(1.1)}66%{transform:translate(-30px,30px) scale(0.93)}}
@@ -114,7 +114,7 @@
 
     /* ─── CARD BASE + SPOTLIGHT ─── */
     .card{background:var(--white);border:1px solid var(--bord);border-radius:22px;margin-top:2.5rem;overflow:hidden;
-      box-shadow:0 4px 8px rgba(0,0,0,.04),0 20px 60px rgba(0,0,0,.07);
+      box-shadow:0 2px 4px rgba(0,0,0,.03),0 12px 40px rgba(6,111,239,.06),0 24px 60px rgba(0,0,0,.07);
       transition:box-shadow .4s,transform .4s;position:relative}
     .card::after{content:'';position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .5s;pointer-events:none;
       background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(6,111,239,.06),transparent)}
@@ -187,10 +187,9 @@
     /* ─── ACTIVATION ─── */
     .activation{margin-top:2.5rem;border-radius:22px;overflow:hidden;border:1px solid var(--bord);
       box-shadow:0 4px 8px rgba(0,0,0,.04),0 20px 60px rgba(0,0,0,.07)}
-    .act-img-wrap{position:relative;overflow:hidden}
-    .act-photo{width:100%;height:auto;display:block}
-    .act-overlay{position:absolute;inset:0;
-      background:linear-gradient(to bottom,rgba(5,12,28,.1) 0%,rgba(5,12,28,.25) 40%,rgba(5,12,28,.92) 100%)}
+    .act-img-wrap{position:relative;height:680px;background-size:cover;background-attachment:fixed;background-position:center 25%;overflow:hidden}
+    .act-photo{display:none}/* photo moved to CSS bg */
+    .act-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(3,8,20,.05) 0%,rgba(3,8,20,.15) 30%,rgba(3,8,20,.75) 75%,rgba(3,8,20,.96) 100%)}
     .act-overlay-text{position:absolute;bottom:0;left:0;right:0;padding:2.75rem}
     .act-ey{font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
       background:linear-gradient(90deg,var(--teal),#67E8F9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.6rem}
@@ -209,7 +208,7 @@
 
     /* ─── SECTIONS ─── */
     .sec{background:var(--white);border:1px solid var(--bord);border-radius:22px;margin-top:2.5rem;overflow:hidden;
-      box-shadow:0 4px 8px rgba(0,0,0,.04),0 20px 60px rgba(0,0,0,.07);
+      box-shadow:0 2px 4px rgba(0,0,0,.03),0 12px 40px rgba(6,111,239,.06),0 24px 60px rgba(0,0,0,.07);
       transition:box-shadow .4s,transform .4s;position:relative}
     .sec::after{content:'';position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .5s;pointer-events:none;
       background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(6,111,239,.04),transparent)}
@@ -300,11 +299,10 @@
   
     /* ─── SPOTLIGHT ROW ─── */
     .spot-row{display:grid;grid-template-columns:260px 1fr;gap:0;border-top:1px solid var(--bord)}
-    .spot-img-col{padding:1.75rem;border-right:1px solid var(--bord)}
-    .spot-img-col img{width:100%;border-radius:12px;display:block;border:1px solid var(--bordl);
-      transition:transform .5s cubic-bezier(.16,1,.3,1)}
-    .spot-img-col img:hover{transform:scale(1.025)}
-    .spot-text-col{padding:1.75rem 2rem}
+    .spot-img-col{padding:0;border-right:1px solid var(--bord);min-width:300px;max-width:300px}
+    .spot-img-col img{width:100%;height:100%;min-height:360px;object-fit:cover;object-position:center top;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+    .spot-img-col img:hover{transform:scale(1.04)}
+    .spot-text-col{padding:2.25rem 2.5rem;display:flex;flex-direction:column;justify-content:center}
     .spot-name{font-size:1.35rem;font-weight:800;color:var(--t1);letter-spacing:-.025em;margin-bottom:.15rem}
     .spot-role{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.7rem}
     .spot-body{font-size:.87rem;color:var(--t3);line-height:1.76;margin-bottom:1.1rem}
@@ -325,6 +323,18 @@
     /* ─── BULLET CHART ─── */
     .bw{display:flex;align-items:center;gap:10px;padding:1px 0}
     .bl{font-size:.72rem;color:var(--t4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:460px}
+
+  
+    /* ─── GRAIN TEXTURE ─── */
+    .hero::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size:256px 256px;opacity:.35;mix-blend-mode:overlay}
+    /* ─── LEADER HEADSHOTS BIGGER ─── */
+    .ldr-av{width:72px!important;height:72px!important;}
+    /* ─── BENTO CELLS TALLER ─── */
+    .bx{padding:2.5rem 2rem 3rem!important}
+    /* ─── ACTIVATION TEXT BIGGER ─── */
+    .act-h2{font-size:clamp(2.2rem,4.5vw,3.4rem)!important}
 
   </style>
 </head>
