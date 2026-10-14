@@ -465,6 +465,22 @@
     .activation { border-radius: 20px !important; border: none !important;
       box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.07), 0 32px 72px rgba(0,0,0,.08) }
 
+  
+    /* ─── CAROUSEL ─── */
+    .act-img-wrap { position:relative; overflow:hidden; height:600px }
+    .cs { position:absolute; inset:0; background-size:cover; background-position:center;
+          opacity:0; transition:opacity 1s ease-in-out; z-index:0 }
+    .cs.on { opacity:1; z-index:1 }
+    .act-overlay { position:absolute; inset:0; z-index:2;
+      background:linear-gradient(to bottom,rgba(3,8,20,.05) 0%,rgba(3,8,20,.15) 30%,rgba(3,8,20,.72) 75%,rgba(3,8,20,.96) 100%) }
+    .act-overlay-text { position:absolute; bottom:0; left:0; right:0; padding:2.75rem; z-index:3 }
+    /* dot indicators */
+    .cs-dots { position:absolute; bottom:1.5rem; right:2rem; z-index:4;
+               display:flex; gap:.5rem; align-items:center }
+    .cs-dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.35);
+              cursor:pointer; transition:background .3s,transform .3s }
+    .cs-dot.on { background:#fff; transform:scale(1.4) }
+
   </style>
 </head>
 <body>
@@ -730,7 +746,13 @@
 
 <!-- ACTIVATION -->
 <div class="activation reveal">
-  <div class="act-img-wrap" style="background-image:url('activation.jpg')">
+  <div class="act-img-wrap" id="actCarousel">
+    <div class="cs on" style="background-image:url('ev1.png')"></div>
+    <div class="cs"    style="background-image:url('ev2.png')"></div>
+    <div class="cs"    style="background-image:url('ev3.png')"></div>
+    <div class="cs"    style="background-image:url('ev4.jpg')"></div>
+    <div class="cs"    style="background-image:url('ev5.png')"></div>
+
     <img src="activation.png" alt="Platform Activation group photo, Mountain View" class="act-photo" id="actPhoto"/>
     <div class="act-overlay"></div>
     <div class="act-overlay-text">
@@ -738,7 +760,8 @@
       <div class="act-h2">The people behind the numbers: Built for More in Mountain View</div>
       <div class="act-dateline">SMB and EMM Platform Activation onsite · Sept 29 to Oct 1</div>
     </div>
-  </div>
+      <div class="cs-dots" id="csDots"></div>
+</div>
   <div class="act-bar">
     <div class="an"><div class="an-num">1.5 days</div><div class="an-lbl">hands-on platform practice</div></div>
     <div class="an"><div class="an-num">20 years</div><div class="an-lbl">before one seller's first visit to HQ</div></div>
@@ -840,6 +863,31 @@ if(ap){
     });ticking=true;}
   },{passive:true});
 }
+
+// ── Platform Activation Carousel ──────────────────────────────────
+(function(){
+  const slides = document.querySelectorAll('#actCarousel .cs');
+  const dotsEl = document.getElementById('csDots');
+  let cur = 0;
+  // build dots
+  slides.forEach((_,i)=>{
+    const d = document.createElement('div');
+    d.className = 'cs-dot' + (i===0?' on':'');
+    d.onclick = ()=>{ go(i); clearInterval(timer); timer=setInterval(next,2000); };
+    dotsEl.appendChild(d);
+  });
+  const dots = dotsEl.querySelectorAll('.cs-dot');
+  function go(n){
+    slides[cur].classList.remove('on');
+    dots[cur].classList.remove('on');
+    cur = n;
+    slides[cur].classList.add('on');
+    dots[cur].classList.add('on');
+  }
+  function next(){ go((cur+1)%slides.length); }
+  let timer = setInterval(next, 2000);
+})();
+
 </script>
 </body>
 </html>
